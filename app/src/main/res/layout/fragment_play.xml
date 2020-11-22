@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+
+        <variable
+            name="playViewModel"
+            type="com.gprifti.livetv.ui.stream.play.PlayViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/player_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            app:resize_mode="fill"
+            app:use_controller="false">
+
+        </com.google.android.exoplayer2.ui.PlayerView>
+
+        <include
+            android:id="@+id/includedLayoutLoader"
+            layout="@layout/loader" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="4dp"
+            android:padding="2dp"
+            android:text="LIVE"
+            android:textColor="@color/color_red_label_tittle"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/image_view"
+            app:layout_constraintEnd_toEndOf="@+id/image_view"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/image_view" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/circle_live"
+            app:layout_constraintBottom_toBottomOf="@+id/image_view"
+            app:layout_constraintEnd_toStartOf="@+id/textView4"
+            app:layout_constraintHeight_percent="0.05"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/image_view"
+            app:layout_constraintTop_toTopOf="@+id/image_view" />
+
+        <View
+            android:id="@+id/image_view"
+            android:layout_width="62dp"
+            android:layout_height="0dp"
+            android:background="@drawable/live_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="2:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.01"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.99" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#FFEB6A28</color>
+    <color name="colorPrimaryDark">#FF454C63</color>
+    <color name="colorAccent">#ffff</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="blue_filter_color">#324376</color>
+    <color name="white">#ffff</color>
+    <color name="white2">#1AFFFFFF</color>
+    <color name="color_white_smoke_card">#F1D3C7</color>
+    <color name="color_black_label_tittle">#5A5A5A</color>
+    <color name="color_red_label_tittle">#EB282A</color>
+
+</resources>
