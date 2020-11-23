@@ -6,7 +6,6 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.gprifti.livetv.data.repository.Repository
-import com.gprifti.livetv.ui.register.form.FormViewModel
 
 class SplashProviderFactory(private val ctx: Context, private val repository: Repository) :
         ViewModelProvider.Factory {

@@ -33,7 +33,7 @@ import kotlinx.coroutines.launch
 
 
 
-       var HLS_STATIC_URL = ""
+var HLS_STATIC_URL = ""
 const val STATE_RESUME_WINDOW = "resumeWindow"
 const val STATE_RESUME_POSITION = "resumePosition"
 const val STATE_PLAYER_FULLSCREEN = "playerFullscreen"

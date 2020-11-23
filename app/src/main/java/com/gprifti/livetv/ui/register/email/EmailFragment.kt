@@ -27,10 +27,7 @@ class EmailFragment : Fragment() {
     private lateinit var navController: NavController
     private lateinit var ctx: Context
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         ctx = container!!.context
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_email, container, false)
@@ -53,21 +50,21 @@ class EmailFragment : Fragment() {
     }
 
     private fun changeView() {
-        viewModel.validateEmail.observe(viewLifecycleOwner, Observer { emailStatus ->
-            when (emailStatus) {
-                true -> navController.navigate(R.id.action_emailFragment2_to_formFragment2)
-                false -> view?.snack(" test you sms here ")
+        viewModel.validateEmail.observe(viewLifecycleOwner, Observer { stateEmail ->
+            when (stateEmail.id) {
+                0 -> navController.navigate(R.id.action_emailFragment2_to_formFragment2)
+                1 -> view?.snack(getString(R.string.snack_txt_form, stateEmail.field))
             }
         })
     }
 
     private fun backPress() {
         val callback: OnBackPressedCallback =
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    activity?.finish()
+                object : OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() {
+                        activity?.finish()
+                    }
                 }
-            }
         requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 

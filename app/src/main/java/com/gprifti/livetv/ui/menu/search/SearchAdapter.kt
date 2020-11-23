@@ -11,18 +11,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gprifti.livetv.R
 import com.gprifti.livetv.data.model.response.StreamsModel
 import com.gprifti.livetv.databinding.AdapterListSearchBinding
+import com.gprifti.livetv.utils.Constants.Companion.IMAGE_URL
+import com.gprifti.livetv.utils.Constants.Companion.VIDEO_URL
 import com.gprifti.livetv.utils.ParseImage
 
 
-
-
 class SearchAdapter(private val ctx: Context, private val nav: NavController, val items: ArrayList<StreamsModel>) :
-    RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
+        RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchAdapter.ViewHolder {
         val binding: AdapterListSearchBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(ctx),
-            R.layout.adapter_list_search, parent, false
+                LayoutInflater.from(ctx),
+                R.layout.adapter_list_search, parent, false
         )
         return SearchAdapter.ViewHolder(binding)
     }
@@ -34,15 +34,15 @@ class SearchAdapter(private val ctx: Context, private val nav: NavController, va
     override fun getItemCount(): Int = items.size
 
     class ViewHolder(val binding: AdapterListSearchBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+            RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: StreamsModel, nav: NavController) {
-            binding.txtTittle.setText("mobile test 99")
+            binding.txtTittle.setText(item.tittle)
             ParseImage.parseImg(itemView.context, item.img, binding.imgChannel)
 
             binding.cardView.setOnClickListener({
-                nav.navigate(R.id.action_searchFragment_to_detailsFragment2, bundleOf("recipient" to item.img.toString(),
-                "videoUrl" to item.urlStream))
+                nav.navigate(R.id.action_searchFragment_to_detailsFragment2, bundleOf(IMAGE_URL to item.img.toString(),
+                        VIDEO_URL to item.urlStream))
             })
 
             binding.setVariable(BR.streamsModel, item)

@@ -11,7 +11,6 @@ class ParseImage {
     companion object {
 
         fun parseImg(ctx: Context, imageSource: String?, imagePlace: ImageView) {
-
             Glide.with(ctx)
                 .applyDefaultRequestOptions(
                     RequestOptions().placeholder(R.drawable.ic_launcher_background)
@@ -19,7 +18,6 @@ class ParseImage {
                 )
                 .load(imageSource)
                 .into(imagePlace)
-
         }
     }
 }

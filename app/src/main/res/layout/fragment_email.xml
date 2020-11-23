@@ -57,8 +57,8 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email_edx"
-            app:layout_constraintVertical_bias="0.78"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.95"
             app:layout_constraintWidth_percent="0.18" />
 
         <EditText
@@ -69,6 +69,7 @@
             android:layout_marginBottom="16dp"
             android:inputType="textEmailAddress"
             android:autofillHints="email"
+            app:backgroundTint="@color/blue_filter_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -77,10 +78,11 @@
             app:layout_constraintWidth_percent="0.8" />
 
         <TextView
+            android:textColor="@color/blue_filter_color"
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
+            android:layout_marginStart="3dp"
             android:text="@string/label_email"
             app:layout_constraintBottom_toTopOf="@+id/email_edx"
             app:layout_constraintStart_toStartOf="@+id/email_edx" />

@@ -1,6 +1,5 @@
 package com.gprifti.livetv.ui.register.form
 
-
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -33,7 +32,7 @@ class FormFragment : Fragment() {
         ctx = container!!.context
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_form, container, false)
         val repository = Repository(LiveTvDatabase(ctx), PrefStorage(ctx))
-        val viewModelProviderFactory = FormProviderFactory(ctx,repository)
+        val viewModelProviderFactory = FormProviderFactory(ctx, repository)
 
         viewModel = ViewModelProvider(this, viewModelProviderFactory).get(FormViewModel::class.java)
         binding.formViewModel = viewModel
@@ -53,9 +52,9 @@ class FormFragment : Fragment() {
     }
 
     private fun changeView() {
-        viewModel.validateForm.observe(viewLifecycleOwner, Observer { formStatus ->
-            when (formStatus.id) {
-                0, 1, 2, 3, 4 -> view?.snack(getString(R.string.snack_txt_form, formStatus.field))
+        viewModel.validateForm.observe(viewLifecycleOwner, Observer { stateForm ->
+            when (stateForm.id) {
+                0, 1, 2, 3, 4 -> view?.snack(getString(R.string.snack_txt_form, stateForm.field))
             }
         })
     }

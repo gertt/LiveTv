@@ -1,6 +1,5 @@
 package com.gprifti.livetv.ui
 
-
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -14,7 +13,6 @@ import com.amitshekhar.DebugDB
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.gprifti.livetv.R
 import kotlinx.android.synthetic.main.activity_main.*
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,7 +44,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 
     private fun showBottomNav() {
         bottomNav.visibility = View.VISIBLE

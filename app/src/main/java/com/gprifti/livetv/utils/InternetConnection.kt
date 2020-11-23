@@ -7,6 +7,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 
 class InternetConnection {
+
     companion object {
         @RequiresApi(Build.VERSION_CODES.M)
         fun isOnline(context: Context): Boolean {

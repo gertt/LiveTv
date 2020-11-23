@@ -58,6 +58,7 @@
             app:layout_constraintVertical_bias="0.071" />
 
         <EditText
+            android:textColor="@color/white"
             android:id="@+id/txt_username"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -72,6 +73,7 @@
             app:layout_constraintVertical_bias="0.97" />
 
         <EditText
+            android:textColor="@color/white"
             android:id="@+id/txt_email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -84,6 +86,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txt_username" />
 
         <EditText
+            android:textColor="@color/white"
             android:id="@+id/txt_pass"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -97,6 +100,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txt_email" />
 
         <EditText
+            android:textColor="@color/white"
             android:id="@+id/txt_surname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -109,6 +113,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txt_pass" />
 
         <EditText
+            android:textColor="@color/white"
             android:id="@+id/txt_phone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -135,14 +140,14 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline"
-            app:layout_constraintVertical_bias="0.78"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.95"
             app:layout_constraintWidth_percent="0.18" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
+            android:layout_marginStart="3dp"
             android:text="@string/label_username"
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/txt_username"
@@ -152,7 +157,7 @@
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
+            android:layout_marginStart="3dp"
             android:text="@string/label_email"
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/txt_email"
@@ -161,7 +166,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
+            android:layout_marginStart="3dp"
             android:text="@string/label_pass"
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/txt_pass"
@@ -171,7 +176,7 @@
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
+            android:layout_marginStart="3dp"
             android:text="@string/label_surname"
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/txt_surname"
@@ -181,7 +186,7 @@
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
+            android:layout_marginStart="3dp"
             android:text="@string/label_phone"
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/txt_phone"
