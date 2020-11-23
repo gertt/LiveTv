@@ -14,6 +14,8 @@ class Repository(private val db: LiveTvDatabase, private val pref: PrefStorage) 
     suspend fun getEmail() = pref.getEmail()
 
     /** get datas from newtwork call */
+    suspend fun startServer() = RetrofitInstance.api.startServer()
+
     suspend fun register(payload: JSONObject) = RetrofitInstance.api.registerUser(payload)
 
     suspend fun getStreamsByTittle(tittle: String) = RetrofitInstance.api.geStreamsByTittle(tittle)

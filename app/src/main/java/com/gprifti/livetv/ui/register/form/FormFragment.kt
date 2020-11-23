@@ -3,12 +3,12 @@ package com.gprifti.livetv.ui.register.form
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -28,15 +28,12 @@ class FormFragment : Fragment() {
     private lateinit var navController: NavController
     private lateinit var ctx: Context
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         ctx = container!!.context
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_form, container, false)
         val repository = Repository(LiveTvDatabase(ctx), PrefStorage(ctx))
-        val viewModelProviderFactory = FormProviderFactory(ctx, repository)
+        val viewModelProviderFactory = FormProviderFactory(ctx,repository)
 
         viewModel = ViewModelProvider(this, viewModelProviderFactory).get(FormViewModel::class.java)
         binding.formViewModel = viewModel
@@ -57,9 +54,8 @@ class FormFragment : Fragment() {
 
     private fun changeView() {
         viewModel.validateForm.observe(viewLifecycleOwner, Observer { formStatus ->
-            when (formStatus) {
-                //  true -> navController!!.navigate(R.id.action_formFragment_to_nav_graph_bottom)
-                false -> view?.snack(" test you sms here ")
+            when (formStatus.id) {
+                0, 1, 2, 3, 4 -> view?.snack(getString(R.string.snack_txt_form, formStatus.field))
             }
         })
     }
@@ -74,16 +70,6 @@ class FormFragment : Fragment() {
         viewModel.backButton.observe(viewLifecycleOwner, Observer {
             navController.navigate(R.id.action_formFragment2_to_emailFragment2)
         })
-    }
-
-    private fun backPress() {
-        val callback: OnBackPressedCallback =
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    navController.navigate(R.id.action_formFragment2_to_emailFragment2)
-                }
-            }
-        requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 
     private fun viewState() {
@@ -110,5 +96,15 @@ class FormFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun backPress() {
+        val callback: OnBackPressedCallback =
+                object : OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() {
+                        navController.navigate(R.id.action_formFragment2_to_emailFragment2)
+                    }
+                }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 }

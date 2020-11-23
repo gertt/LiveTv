@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gprifti.livetv.data.model.response.StreamsModel
 import com.gprifti.livetv.data.repository.Repository
+import com.gprifti.livetv.utils.FilterType
 import com.gprifti.livetv.utils.InternetConnection
 import kotlinx.coroutines.*
 import kotlin.collections.ArrayList
@@ -26,9 +27,7 @@ class SearchViewModel(private val ctx: Context, private val repository: Reposito
     var stateView = MutableLiveData<Int>()
 
 
-    enum class FilterType(val filter: String) {
-        ALL("all"), INTERNACIONAL("internacional"), NATIONAL("national")
-    }
+
 
     init {
         if (InternetConnection.isOnline(ctx)) {

@@ -36,6 +36,7 @@ class EmailFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_email, container, false)
         val repository = Repository(LiveTvDatabase(ctx), PrefStorage(ctx))
         val viewModelProviderFactory = EmaiProviderFactory(repository)
+
         viewModel = ViewModelProvider(this, viewModelProviderFactory).get(EmailViewModel::class.java)
         binding.emailViewModel = viewModel
         binding.lifecycleOwner = this

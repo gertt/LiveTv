@@ -5,15 +5,14 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
-
-
     <string name="label_username">Username</string>
     <string name="label_email">Email</string>
     <string name="label_pass">Pass</string>
     <string name="label_surname">Surname</string>
     <string name="label_phone">Phone</string>
     <string name="label_create_account">Create \nAccount</string>
+    <string name="label_welcome">Welcome</string>
 
-
+    <string name="snack_txt_form">Please fill the  %1$s field in the correct way !</string>
 
 </resources>

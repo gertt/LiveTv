@@ -7,6 +7,9 @@ import retrofit2.http.*
 
 interface APISearch {
 
+    @GET("/startServer")
+    suspend fun startServer(): Any
+
     @Headers("Content-Type: application/json")
     @POST("/register")
     suspend fun registerUser(@Body payload: JSONObject): Response<Any>
@@ -15,12 +18,9 @@ interface APISearch {
     suspend fun geStreamsByTittle(@Query("tittle_like") tittle: String): ArrayList<StreamsModel>
 
     @GET("/streams")
-    suspend fun getStreamsByTittleCategory(
-        @Query("tittle_like") tittle: String,
-        @Query("category") category: String
-    ): ArrayList<StreamsModel>
+    suspend fun getStreamsByTittleCategory(@Query("tittle_like") tittle: String,
+                                           @Query("category") category: String): ArrayList<StreamsModel>
 
     @GET("/streams")
     suspend fun getStreamsByCategory(@Query("category") category: String): ArrayList<StreamsModel>
-
 }

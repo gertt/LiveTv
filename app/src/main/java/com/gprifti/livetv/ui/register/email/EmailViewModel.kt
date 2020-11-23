@@ -23,10 +23,10 @@ class EmailViewModel(
 
     fun clickNextButton(email: String) {
         viewModelScope.launch {
-           // if (email.isNotEmpty() && email.matches(EMAIL_PATERN)) {
+            if (email.isNotEmpty() && email.matches(EMAIL_PATERN)) {
                 email(email)
                 validateEmail.value = true
-          //  } else
+            } else
                 validateEmail.value = false
         }
     }

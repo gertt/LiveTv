@@ -10,7 +10,6 @@
             type="com.gprifti.livetv.ui.register.form.FormViewModel" />
     </data>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -91,6 +90,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:backgroundTint="@android:color/white"
+            android:inputType="textPassword"
             app:layout_constraintBottom_toTopOf="@+id/txt_surname"
             app:layout_constraintEnd_toEndOf="@+id/txt_email"
             app:layout_constraintStart_toStartOf="@+id/txt_email"
@@ -136,12 +136,13 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline"
-            app:layout_constraintVertical_bias="0.55"
+            app:layout_constraintVertical_bias="0.78"
             app:layout_constraintWidth_percent="0.18" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
             android:text="@string/label_username"
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/txt_username"
@@ -151,6 +152,7 @@
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
             android:text="@string/label_email"
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/txt_email"
@@ -159,6 +161,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
             android:text="@string/label_pass"
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/txt_pass"
@@ -168,6 +171,7 @@
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
             android:text="@string/label_surname"
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/txt_surname"
@@ -177,6 +181,7 @@
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
             android:text="@string/label_phone"
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/txt_phone"
@@ -205,8 +210,12 @@
         <include
             android:id="@+id/includedLayoutLoader"
             layout="@layout/loader"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
