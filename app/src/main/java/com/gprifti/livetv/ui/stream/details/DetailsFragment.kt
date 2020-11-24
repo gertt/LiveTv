@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -56,5 +57,17 @@ class DetailsFragment : Fragment() {
             )
         })
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        backPress()
+    }
+
+    private fun backPress() {
+        val callback: OnBackPressedCallback =
+                object : OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() {
+                        navController.navigate(R.id.action_detailsFragment2_to_favoriteFragment)
+                    }
+                }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 }

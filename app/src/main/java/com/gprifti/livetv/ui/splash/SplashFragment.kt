@@ -55,8 +55,11 @@ class SplashFragment : Fragment() {
     }
 
     private fun changeView() {
-        viewModel.changeView.observe(viewLifecycleOwner, Observer {
-            navController!!.navigate(R.id.action_splashFragment2_to_emailFragment2)
+        viewModel.changeView.observe(viewLifecycleOwner, Observer {state ->
+          when(state){
+              0 ->  navController!!.navigate(R.id.action_splashFragment2_to_nav_graph_bottom2 )
+              1 ->  navController!!.navigate(R.id.action_splashFragment2_to_emailFragment2)
+          }
         })
     }
 }

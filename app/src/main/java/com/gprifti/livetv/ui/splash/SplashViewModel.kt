@@ -16,7 +16,7 @@ import kotlinx.coroutines.withContext
 @RequiresApi(Build.VERSION_CODES.M)
 class SplashViewModel(private val ctx: Context, private val repository: Repository) : ViewModel() {
 
-    var changeView = MutableLiveData<Boolean>()
+    var changeView = MutableLiveData<Int>()
 
     init {
         viewModelScope.launch {
@@ -24,7 +24,11 @@ class SplashViewModel(private val ctx: Context, private val repository: Reposito
                 repository.startServer();
             delay(3000)
             withContext(Dispatchers.Main) {
-                changeView.value = true
+
+                if(repository.getEmail()?.isNotEmpty() == true)
+                    changeView.value = 0
+                else
+                    changeView.value = 1
             }
         }
     }

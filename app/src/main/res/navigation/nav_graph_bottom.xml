@@ -44,6 +44,9 @@
         <action
             android:id="@+id/action_detailsFragment2_to_playFragment"
             app:destination="@id/playFragment" />
+        <action
+            android:id="@+id/action_detailsFragment2_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
 
     </fragment>
     <fragment

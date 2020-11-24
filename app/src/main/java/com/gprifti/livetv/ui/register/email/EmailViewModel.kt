@@ -25,9 +25,9 @@ class EmailViewModel(private val repository: Repository) : ViewModel() {
         viewModelScope.launch {
             if (email.isNotEmpty() && email.matches(EMAIL_PATERN)) {
                 email(email)
-                validateEmail.value = FormStateDto(1, "")
+                validateEmail.value = FormStateDto(0, "")
             } else
-                validateEmail.value = FormStateDto(0, FileldType.EMAIL.field)
+                validateEmail.value = FormStateDto(1, FileldType.EMAIL.field)
         }
     }
 
