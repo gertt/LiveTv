@@ -23,33 +23,33 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-        navController = findNavController(this, R.id.fragment)
-        bottomNav.setupWithNavController(navController)
+     //   navController = findNavController(this, R.id.fragment)
+      //  bottomNav.setupWithNavController(navController)
 
         var sgs = DebugDB.getAddressLog();
         // Open http://192.168.1.2:8080 in your browser
 
-        setupNav()
+        //setupNav()
     }
 
-    private fun setupNav() {
-        val navController = findNavController(R.id.fragment)
-        findViewById<BottomNavigationView>(R.id.bottomNav).setupWithNavController(navController)
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-                R.id.favoriteFragment -> showBottomNav()
-                R.id.popularListFragment -> showBottomNav()
-                R.id.searchFragment -> showBottomNav()
-                else -> hideBottomNav()
-            }
-        }
-    }
+//    private fun setupNav() {
+//        val navController = findNavController(R.id.fragment)
+//        findViewById<BottomNavigationView>(R.id.bottomNav).setupWithNavController(navController)
+//        navController.addOnDestinationChangedListener { _, destination, _ ->
+//            when (destination.id) {
+//                R.id.favoriteFragment -> showBottomNav()
+//                R.id.popularListFragment -> showBottomNav()
+//                R.id.searchFragment -> showBottomNav()
+//                else -> hideBottomNav()
+//            }
+//        }
+//    }
 
-    private fun showBottomNav() {
-        bottomNav.visibility = View.VISIBLE
-    }
-
-    private fun hideBottomNav() {
-        bottomNav.visibility = View.GONE
-    }
+//    private fun showBottomNav() {
+//        bottomNav.visibility = View.VISIBLE
+//    }
+//
+//    private fun hideBottomNav() {
+//        bottomNav.visibility = View.GONE
+//    }
 }

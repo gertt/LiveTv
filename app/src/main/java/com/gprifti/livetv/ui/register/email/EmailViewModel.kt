@@ -1,17 +1,20 @@
 package com.gprifti.livetv.ui.register.email
 
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gprifti.livetv.data.model.dto.FormStateDto
 import com.gprifti.livetv.data.repository.Repository
-import com.gprifti.livetv.utils.Constants.Companion.EMAIL_PATERN
-import com.gprifti.livetv.utils.FileldType
+import com.gprifti.livetv.utils.EMAIL_PATERN
+import com.gprifti.livetv.utils.Event
 import kotlinx.coroutines.launch
 
-class EmailViewModel(private val repository: Repository) : ViewModel() {
 
-    var validateEmail = MutableLiveData<FormStateDto>()
+class EmailViewModel( private val repository: Repository) : ViewModel() {
+
+    val validateEmail: MutableLiveData<Event<FormStateDto>> = MutableLiveData()
+
     var setEmail = MutableLiveData<String>()
 
     init {
@@ -25,9 +28,9 @@ class EmailViewModel(private val repository: Repository) : ViewModel() {
         viewModelScope.launch {
             if (email.isNotEmpty() && email.matches(EMAIL_PATERN)) {
                 email(email)
-                validateEmail.value = FormStateDto(0, "")
+                validateEmail.value =  Event(FormStateDto(0, ""))
             } else
-                validateEmail.value = FormStateDto(1, FileldType.EMAIL.field)
+                validateEmail.value =  Event(FormStateDto(1, ""))
         }
     }
 

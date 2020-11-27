@@ -20,6 +20,7 @@ import com.gprifti.livetv.databinding.FragmentEmailBinding
 import com.gprifti.livetv.utils.SnackBar.Companion.snack
 
 
+
 class EmailFragment : Fragment() {
 
     private lateinit var binding: FragmentEmailBinding
@@ -27,7 +28,11 @@ class EmailFragment : Fragment() {
     private lateinit var navController: NavController
     private lateinit var ctx: Context
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
         ctx = container!!.context
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_email, container, false)
@@ -36,7 +41,6 @@ class EmailFragment : Fragment() {
 
         viewModel = ViewModelProvider(this, viewModelProviderFactory).get(EmailViewModel::class.java)
         binding.emailViewModel = viewModel
-        binding.lifecycleOwner = this
         return binding.root
     }
 
@@ -44,28 +48,19 @@ class EmailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
-        changeView()
+        changeView(view)
         preSetEmail()
-        backPress()
     }
 
-    private fun changeView() {
-        viewModel.validateEmail.observe(viewLifecycleOwner, Observer { stateEmail ->
-            when (stateEmail.id) {
-                0 -> navController.navigate(R.id.action_emailFragment2_to_formFragment2)
-                1 -> view?.snack(getString(R.string.snack_txt_form, stateEmail.field))
-            }
-        })
-    }
-
-    private fun backPress() {
-        val callback: OnBackPressedCallback =
-                object : OnBackPressedCallback(true) {
-                    override fun handleOnBackPressed() {
-                        activity?.finish()
+    private fun changeView(view: View) {
+        viewModel.validateEmail.observe(viewLifecycleOwner, Observer { it ->
+                it.getContentIfNotHandled()?.let {
+                    when(it.id){
+                        0 -> navController.navigate(R.id.action_emailFragment_to_formFragment)
+                        1 -> view?.snack(getString(R.string.snack_txt_form, it.field))
                     }
                 }
-        requireActivity().onBackPressedDispatcher.addCallback(callback)
+        })
     }
 
     private fun preSetEmail() {

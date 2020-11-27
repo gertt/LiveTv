@@ -18,9 +18,9 @@ import com.gprifti.livetv.data.db.LiveTvDatabase
 import com.gprifti.livetv.data.pref.PrefStorage
 import com.gprifti.livetv.data.repository.Repository
 import com.gprifti.livetv.databinding.FragmentDetailsBinding
-import com.gprifti.livetv.utils.Constants.Companion.IMAGE_URL
-import com.gprifti.livetv.utils.Constants.Companion.VIDEO_URL
+import com.gprifti.livetv.utils.IMAGE_URL
 import com.gprifti.livetv.utils.ParseImage
+import com.gprifti.livetv.utils.VIDEO_URL
 
 class DetailsFragment : Fragment() {
 

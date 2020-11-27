@@ -3,7 +3,7 @@ package com.gprifti.livetv.data.pref
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
-import com.gprifti.livetv.utils.Constants.Companion.KEY_EMAIL
+import com.gprifti.livetv.utils.KEY_EMAIL
 
 class PrefStorage(context: Context?) {
 
@@ -19,7 +19,7 @@ class PrefStorage(context: Context?) {
     }
 
     suspend fun getEmail(): String? {
-        return preference.getString(KEY_EMAIL, null)
+        return preference.getString(KEY_EMAIL, "")
     }
 }
 

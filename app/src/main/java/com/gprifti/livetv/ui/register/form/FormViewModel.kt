@@ -7,11 +7,10 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gprifti.livetv.data.model.dto.FormFieldsDto
 import com.gprifti.livetv.data.model.dto.FormStateDto
 import com.gprifti.livetv.data.repository.Repository
-import com.gprifti.livetv.utils.Constants
-import com.gprifti.livetv.utils.FileldType
-import com.gprifti.livetv.utils.InternetConnection
+import com.gprifti.livetv.utils.*
 import kotlinx.coroutines.launch
 import org.json.JSONException
 import org.json.JSONObject
@@ -19,6 +18,7 @@ import org.json.JSONObject
 class FormViewModel(private val ctx: Context, private val repository: Repository) : ViewModel() {
 
     var validateForm = MutableLiveData<FormStateDto>()
+    var formFieldsState = MutableLiveData<FormFieldsDto>()
     var backButton = MutableLiveData<Boolean>()
     var preSetEmail = MutableLiveData<String>()
     var stateView = MutableLiveData<Int>()
@@ -26,14 +26,23 @@ class FormViewModel(private val ctx: Context, private val repository: Repository
     init {
         viewModelScope.launch {
             preSetEmail.value = repository.getEmail()
+
         }
+    }
+
+    fun getFields(): MutableLiveData<FormFieldsDto> {
+        if (formFieldsState == null) {
+            formFieldsState.forceRefresh()
+        }
+        return formFieldsState
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
     fun clickNextButtonForm(username: String, email: String, pass: String, surname: String, phone: String) {
+        formFieldsState.value = FormFieldsDto(username,email,pass,surname,phone)
         if (username.isEmpty() || username.length < 5)
             validateForm.value = FormStateDto(0, FileldType.USERNAME.field)
-        else if (email.isEmpty() || !email.matches(Constants.EMAIL_PATERN))
+        else if (email.isEmpty() || !email.matches(EMAIL_PATERN))
             validateForm.value = FormStateDto(1, FileldType.EMAIL.field)
         else if (pass.isEmpty() || pass.length < 5)
             validateForm.value = FormStateDto(2, FileldType.PASS.field)
@@ -67,7 +76,6 @@ class FormViewModel(private val ctx: Context, private val repository: Repository
             payloadObj.put(FileldType.PASS.field, pass)
             payloadObj.put(FileldType.SURNAME.field, surname)
             payloadObj.put(FileldType.PHONE.field, phone)
-
         } catch (e: JSONException) {
             e.printStackTrace()
         }

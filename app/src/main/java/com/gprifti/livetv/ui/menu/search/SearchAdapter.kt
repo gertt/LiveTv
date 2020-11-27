@@ -11,9 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gprifti.livetv.R
 import com.gprifti.livetv.data.model.response.StreamsModel
 import com.gprifti.livetv.databinding.AdapterListSearchBinding
-import com.gprifti.livetv.utils.Constants.Companion.IMAGE_URL
-import com.gprifti.livetv.utils.Constants.Companion.VIDEO_URL
+import com.gprifti.livetv.utils.IMAGE_URL
+
 import com.gprifti.livetv.utils.ParseImage
+import com.gprifti.livetv.utils.VIDEO_URL
 
 
 class SearchAdapter(private val ctx: Context, private val nav: NavController, val items: ArrayList<StreamsModel>) :
