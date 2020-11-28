@@ -49,34 +49,6 @@ class SplashFragment : Fragment() {
         }
     }
 
-//    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-//
-//        val view = inflater.inflate(R.layout.fragment_splash, container, false)
-//
-//        view.findViewById<View>(R.id.splash_img).setOnClickListener {
-//            Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_emailFragment)
-//        }
-//        return view
-//
-//        ctx = container!!.context
-//        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_splash, container, false)
-//        val repository = Repository(LiveTvDatabase(ctx), PrefStorage(ctx))
-//        val viewModelProviderFactory = SplashProviderFactory(ctx, repository)
-//
-//        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(SplashViewModel::class.java)
-//        binding.splashViewModel = viewModel
-//        binding.lifecycleOwner = this
-//        return binding.root
-//    }
-//
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//       // navController = Navigation.findNavController(view)
-//       // changeOpacity(binding.splashImg)
-//       // changeView(view)
-//        Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_emailFragment)
-//    }
-
     private fun changeOpacity(splashImg: ImageView) {
         val animation1 = AlphaAnimation(0.0f, 1.0f)
         animation1.duration = 2500

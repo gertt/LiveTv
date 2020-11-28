@@ -2,6 +2,7 @@
     <string name="app_name">LiveTv</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
@@ -14,5 +15,6 @@
     <string name="label_welcome">Welcome</string>
 
     <string name="snack_txt_form">Please fill the  %1$s field in the correct way !</string>
-
+    <string name="snack_no_internet">No internet connection !</string>
+    <string name="snack_something_wrong">Something went wrong !</string>
 </resources>

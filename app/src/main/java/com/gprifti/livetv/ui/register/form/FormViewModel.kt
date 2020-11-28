@@ -7,7 +7,6 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gprifti.livetv.data.model.dto.FormFieldsDto
 import com.gprifti.livetv.data.model.dto.FormStateDto
 import com.gprifti.livetv.data.repository.Repository
 import com.gprifti.livetv.utils.*
@@ -18,7 +17,6 @@ import org.json.JSONObject
 class FormViewModel(private val ctx: Context, private val repository: Repository) : ViewModel() {
 
     var validateForm = MutableLiveData<FormStateDto>()
-    var formFieldsState = MutableLiveData<FormFieldsDto>()
     var backButton = MutableLiveData<Boolean>()
     var preSetEmail = MutableLiveData<String>()
     var stateView = MutableLiveData<Int>()
@@ -30,16 +28,9 @@ class FormViewModel(private val ctx: Context, private val repository: Repository
         }
     }
 
-    fun getFields(): MutableLiveData<FormFieldsDto> {
-        if (formFieldsState == null) {
-            formFieldsState.forceRefresh()
-        }
-        return formFieldsState
-    }
 
     @RequiresApi(Build.VERSION_CODES.M)
     fun clickNextButtonForm(username: String, email: String, pass: String, surname: String, phone: String) {
-        formFieldsState.value = FormFieldsDto(username,email,pass,surname,phone)
         if (username.isEmpty() || username.length < 5)
             validateForm.value = FormStateDto(0, FileldType.USERNAME.field)
         else if (email.isEmpty() || !email.matches(EMAIL_PATERN))

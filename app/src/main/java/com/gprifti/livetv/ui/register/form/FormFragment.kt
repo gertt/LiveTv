@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.addCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -19,7 +17,6 @@ import com.gprifti.livetv.data.pref.PrefStorage
 import com.gprifti.livetv.data.repository.Repository
 import com.gprifti.livetv.databinding.FragmentFormBinding
 import com.gprifti.livetv.utils.SnackBar.Companion.snack
-import kotlinx.android.synthetic.main.fragment_form.*
 
 
 class FormFragment : Fragment() {
@@ -45,33 +42,10 @@ class FormFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
-
-//        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
-//            // Handle the back button event
-//
-//            var shs =""
-//            var ssdhs =""
-//
-//        }
-
-
-
-
         changeView()
         preSetEmail()
         viewState()
-        fieldState()
-       backPress()
-    }
-
-    private fun fieldState() {
-        viewModel.getFields().observe(viewLifecycleOwner, Observer { stateField ->
-            txt_username.setText(stateField.username)
-            txt_email.setText(stateField.email)
-            txt_pass.setText(stateField.pass)
-            txt_surname.setText(stateField.surname)
-            txt_phone.setText(stateField.phone)
-        })
+        backPress()
     }
 
     private fun changeView() {
@@ -98,17 +72,17 @@ class FormFragment : Fragment() {
                 2 -> {
                     binding.includedLayoutView.loadView.visibility = View.VISIBLE
                     binding.includedLayoutLoader.progressBar.visibility = View.INVISIBLE
-                    view?.snack("no intenet ")
+                    view?.snack(getString(R.string.snack_no_internet))
                 }
                 3 -> {
                     binding.includedLayoutView.loadView.visibility = View.VISIBLE
                     binding.includedLayoutLoader.progressBar.visibility = View.INVISIBLE
-                    view?.snack("something wrong")
+                    view?.snack(getString(R.string.snack_something_wrong))
                 }
                 4 -> {
                     binding.includedLayoutView.loadView.visibility = View.INVISIBLE
                     binding.includedLayoutLoader.progressBar.visibility = View.INVISIBLE
-                  // navController.navigate(R.id.action_formFragment2_to_nav_graph_bottom)
+                    navController.navigate(R.id.action_formFragment_to_nav_graph_bottom)
                 }
             }
         })
@@ -116,8 +90,7 @@ class FormFragment : Fragment() {
 
     private fun backPress() {
         viewModel.backButton.observe(viewLifecycleOwner, Observer { backButton ->
-
-            if (backButton){
+            if (backButton) {
                 navController.navigateUp()
             }
         })
