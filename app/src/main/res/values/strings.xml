@@ -17,4 +17,5 @@
     <string name="snack_txt_form">Please fill the  %1$s field in the correct way !</string>
     <string name="snack_no_internet">No internet connection !</string>
     <string name="snack_something_wrong">Something went wrong !</string>
+
 </resources>

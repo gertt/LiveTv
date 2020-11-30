@@ -16,4 +16,11 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:background="@android:color/transparent"
+        app:elevation="0dp"
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottom_menu" />
 </LinearLayout>
