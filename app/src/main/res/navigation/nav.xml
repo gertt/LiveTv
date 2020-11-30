@@ -17,8 +17,10 @@
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_nav_graph_bottom"
+            app:destination="@id/nav_graph_bottom" />
     </fragment>
-
 
     <fragment
         android:id="@+id/emailFragment"
@@ -33,7 +35,6 @@
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
-
     <fragment
         android:id="@+id/formFragment"
         android:name="com.gprifti.livetv.ui.register.form.FormFragment"
@@ -42,6 +43,7 @@
             android:id="@+id/action_formFragment_to_nav_graph_bottom"
             app:destination="@id/nav_graph_bottom" />
     </fragment>
+
     <include app:graph="@navigation/nav_graph_bottom" />
 
 </navigation>

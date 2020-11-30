@@ -58,7 +58,7 @@ class SplashFragment : Fragment() {
     private fun changeView(view: View) {
         viewModel.changeView.observe(viewLifecycleOwner, Observer { state ->
             when (state) {
-                0 -> Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_emailFragment)
+                0 -> Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_nav_graph_bottom)
                 1 -> Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_emailFragment)
             }
         })
