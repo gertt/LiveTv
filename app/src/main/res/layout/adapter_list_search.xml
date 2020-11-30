@@ -44,9 +44,9 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
-            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_margin="10dp"
             android:background="@color/color_white_smoke_card"
             app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"

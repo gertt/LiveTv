@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 @RequiresApi(Build.VERSION_CODES.M)
 class FavoriteViewModel(private val ctx: Context, private val repository: Repository) :
-    ViewModel() {
+        ViewModel() {
 
     var favoriteResult = MutableLiveData<List<FavoriteEntity>>()
     var stateView = MutableLiveData<Int>()
@@ -29,7 +29,7 @@ class FavoriteViewModel(private val ctx: Context, private val repository: Reposi
                     stateView.value = 3
                 }
             }
-        }else  stateView.value = 2
+        } else stateView.value = 2
     }
 }
 

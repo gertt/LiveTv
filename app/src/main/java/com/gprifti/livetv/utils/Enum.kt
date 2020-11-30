@@ -5,5 +5,5 @@ enum class FileldType(val field: String) {
 }
 
 enum class FilterType(val filter: String) {
-    ALL("all"), INTERNACIONAL("internacional"), NATIONAL("national")
+    ALL("all"), INTERNATIONAL("international"), NATIONAL("national")
 }

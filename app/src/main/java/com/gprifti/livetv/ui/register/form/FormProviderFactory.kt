@@ -8,10 +8,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.gprifti.livetv.data.repository.Repository
 
 class FormProviderFactory(private val ctx: Context, private val repository: Repository) :
-    ViewModelProvider.Factory {
+        ViewModelProvider.Factory {
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return FormViewModel(ctx,repository) as T
+        return FormViewModel(ctx, repository) as T
     }
 }

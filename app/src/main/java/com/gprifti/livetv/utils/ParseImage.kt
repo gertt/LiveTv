@@ -12,12 +12,12 @@ class ParseImage {
 
         fun parseImg(ctx: Context, imageSource: String?, imagePlace: ImageView) {
             Glide.with(ctx)
-                .applyDefaultRequestOptions(
-                    RequestOptions().placeholder(R.drawable.ic_launcher_background)
-                        .error(R.drawable.ic_launcher_background)
-                )
-                .load(imageSource)
-                .into(imagePlace)
+                    .applyDefaultRequestOptions(
+                            RequestOptions().placeholder(R.drawable.ic_launcher_background)
+                                    .error(R.drawable.ic_launcher_background)
+                    )
+                    .load(imageSource)
+                    .into(imagePlace)
         }
     }
 }

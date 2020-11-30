@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.gprifti.livetv.data.repository.Repository
 
-class EmaiProviderFactory( private val repository: Repository) : ViewModelProvider.Factory {
+class EmailProviderFactory(private val repository: Repository) : ViewModelProvider.Factory {
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

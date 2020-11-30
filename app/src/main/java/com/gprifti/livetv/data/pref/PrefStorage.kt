@@ -11,14 +11,14 @@ class PrefStorage(context: Context?) {
 
     private val preference: SharedPreferences
         get() = PreferenceManager.getDefaultSharedPreferences(
-            appContext
+                appContext
         )
 
-    suspend fun saveEmail(email: String) {
+    fun saveEmail(email: String) {
         preference.edit().putString(KEY_EMAIL, email).apply()
     }
 
-    suspend fun getEmail(): String? {
+    fun getEmail(): String? {
         return preference.getString(KEY_EMAIL, "")
     }
 }

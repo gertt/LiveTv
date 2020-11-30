@@ -11,10 +11,9 @@ import com.gprifti.livetv.utils.Event
 import kotlinx.coroutines.launch
 
 
-class EmailViewModel( private val repository: Repository) : ViewModel() {
+class EmailViewModel(private val repository: Repository) : ViewModel() {
 
     val validateEmail: MutableLiveData<Event<FormStateDto>> = MutableLiveData()
-
     var setEmail = MutableLiveData<String>()
 
     init {
@@ -28,13 +27,13 @@ class EmailViewModel( private val repository: Repository) : ViewModel() {
         viewModelScope.launch {
             if (email.isNotEmpty() && email.matches(EMAIL_PATERN)) {
                 email(email)
-                validateEmail.value =  Event(FormStateDto(0, ""))
+                validateEmail.value = Event(FormStateDto(0, ""))
             } else
-                validateEmail.value =  Event(FormStateDto(1, ""))
+                validateEmail.value = Event(FormStateDto(1, ""))
         }
     }
 
-    private suspend fun email(validateEmail: String) {
+    private fun email(validateEmail: String) {
         repository.savEmail(validateEmail)
     }
 }

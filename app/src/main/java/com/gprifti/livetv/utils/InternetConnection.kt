@@ -12,10 +12,10 @@ class InternetConnection {
         @RequiresApi(Build.VERSION_CODES.M)
         fun isOnline(context: Context): Boolean {
             val connectivityManager =
-                context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+                    context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             if (connectivityManager != null) {
                 val capabilities =
-                    connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+                        connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
                 if (capabilities != null) {
                     when {
                         capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> return true

@@ -22,7 +22,6 @@ import com.gprifti.livetv.databinding.FragmentPopularBinding
 import com.gprifti.livetv.utils.SnackBar.Companion.snack
 
 
-
 class PopularFragment : Fragment() {
 
 
@@ -32,10 +31,7 @@ class PopularFragment : Fragment() {
     private lateinit var ctx: Context
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         ctx = container!!.context
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_popular, container, false)
@@ -75,12 +71,12 @@ class PopularFragment : Fragment() {
                 2 -> {
                     binding.includedLayoutView.loadView.visibility = View.VISIBLE
                     binding.includedLayoutLoader.progressBar.visibility = View.INVISIBLE
-                    view?.snack("no intenet ")
+                    view?.snack(getString(R.string.snack_no_internet))
                 }
                 3 -> {
                     binding.includedLayoutView.loadView.visibility = View.VISIBLE
                     binding.includedLayoutLoader.progressBar.visibility = View.INVISIBLE
-                    view?.snack("something wrong")
+                    view?.snack(getString(R.string.snack_something_wrong))
                 }
                 4 -> {
                     binding.includedLayoutView.loadView.visibility = View.INVISIBLE
@@ -92,11 +88,11 @@ class PopularFragment : Fragment() {
 
     private fun backPress() {
         val callback: OnBackPressedCallback =
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    activity?.finish()
+                object : OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() {
+                        activity?.finish()
+                    }
                 }
-            }
         requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 }

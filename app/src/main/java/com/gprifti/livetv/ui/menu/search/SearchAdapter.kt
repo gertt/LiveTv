@@ -12,7 +12,6 @@ import com.gprifti.livetv.R
 import com.gprifti.livetv.data.model.response.StreamsModel
 import com.gprifti.livetv.databinding.AdapterListSearchBinding
 import com.gprifti.livetv.utils.IMAGE_URL
-
 import com.gprifti.livetv.utils.ParseImage
 import com.gprifti.livetv.utils.VIDEO_URL
 
@@ -25,7 +24,7 @@ class SearchAdapter(private val ctx: Context, private val nav: NavController, va
                 LayoutInflater.from(ctx),
                 R.layout.adapter_list_search, parent, false
         )
-        return SearchAdapter.ViewHolder(binding)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: SearchAdapter.ViewHolder, position: Int) {

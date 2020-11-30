@@ -32,7 +32,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
-
 var HLS_STATIC_URL = ""
 const val STATE_RESUME_WINDOW = "resumeWindow"
 const val STATE_RESUME_POSITION = "resumePosition"
@@ -61,13 +60,13 @@ class PlayFragment : Fragment(), Player.EventListener {
     private var isPlayerPlaying = true
 
     private val mediaItem = MediaItem.Builder()
-        .setUri(HLS_STATIC_URL)
-        .setMimeType(MimeTypes.APPLICATION_M3U8)
-        .build()
+            .setUri(HLS_STATIC_URL)
+            .setMimeType(MimeTypes.APPLICATION_M3U8)
+            .build()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         ctx = container!!.context
 
@@ -90,7 +89,7 @@ class PlayFragment : Fragment(), Player.EventListener {
         var recipient = requireArguments().getString("videoUrl")
 
         if (recipient != null) {
-            HLS_STATIC_URL =  recipient
+            HLS_STATIC_URL = recipient
         }
 
         dataSourceFactory = DefaultDataSourceFactory(ctx, Util.getUserAgent(ctx, "testapp"))
@@ -181,16 +180,16 @@ class PlayFragment : Fragment(), Player.EventListener {
 
     private fun backPress() {
         val callback: OnBackPressedCallback =
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    if ((firstTimeBackPress - System.currentTimeMillis()) > 1200)
-                        view?.snack("Press again")
-                    else view?.snack("ok again")
-                    navController.navigate(R.id.action_searchFragment_to_popularListFragment)
+                object : OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() {
+                        if ((firstTimeBackPress - System.currentTimeMillis()) > 1200)
+                            view?.snack("Press again")
+                        else view?.snack("ok again")
+                        navController.navigate(R.id.action_searchFragment_to_popularListFragment)
 
-                    firstTimeBackPress = System.currentTimeMillis()
+                        firstTimeBackPress = System.currentTimeMillis()
+                    }
                 }
-            }
         requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 }

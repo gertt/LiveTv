@@ -12,7 +12,6 @@ import com.gprifti.livetv.data.repository.Repository
 import com.gprifti.livetv.utils.FilterType
 import com.gprifti.livetv.utils.InternetConnection
 import kotlinx.coroutines.*
-import kotlin.collections.ArrayList
 
 
 @RequiresApi(Build.VERSION_CODES.M)
@@ -25,9 +24,6 @@ class SearchViewModel(private val ctx: Context, private val repository: Reposito
     var filterCategory = MutableLiveData<Int>()
     var keyword: String = ""
     var stateView = MutableLiveData<Int>()
-
-
-
 
     init {
         if (InternetConnection.isOnline(ctx)) {
@@ -47,13 +43,13 @@ class SearchViewModel(private val ctx: Context, private val repository: Reposito
         if (InternetConnection.isOnline(ctx)) {
             searchJob?.cancel()
             stateView.value = 1
-            searchJob =  coroutineScope.launch {
-                    s?.let {
-                        delay(400)
-                        searchResult.value = repository.getStreamsByTittle(s.toString())
-                        keyword = s.toString()
-                        stateView.value = 4
-                    }
+            searchJob = coroutineScope.launch {
+                s?.let {
+                    delay(400)
+                    searchResult.value = repository.getStreamsByTittle(s.toString())
+                    keyword = s.toString()
+                    stateView.value = 4
+                }
             }
         } else stateView.value = 2
     }
@@ -65,7 +61,7 @@ class SearchViewModel(private val ctx: Context, private val repository: Reposito
                 filterCategory.value = 1
             }
             2 -> {
-                callService(keyword, FilterType.INTERNACIONAL.filter)
+                callService(keyword, FilterType.INTERNATIONAL.filter)
                 filterCategory.value = 2
             }
             3 -> {
@@ -79,9 +75,9 @@ class SearchViewModel(private val ctx: Context, private val repository: Reposito
         if (InternetConnection.isOnline(ctx)) {
             viewModelScope.launch {
                 stateView.value = 1
-                if(category.equals(FilterType.ALL.filter)){
+                if (category.equals(FilterType.ALL.filter)) {
                     searchResult.value = repository.getStreamsByTittle(keyword)
-                } else{
+                } else {
                     searchResult.value = repository.getStreamsByTittleCategory(keyword, category)
                 }
                 stateView.value = 4

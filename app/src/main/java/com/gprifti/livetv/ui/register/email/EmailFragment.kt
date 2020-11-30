@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -37,7 +36,7 @@ class EmailFragment : Fragment() {
         ctx = container!!.context
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_email, container, false)
         val repository = Repository(LiveTvDatabase(ctx), PrefStorage(ctx))
-        val viewModelProviderFactory = EmaiProviderFactory(repository)
+        val viewModelProviderFactory = EmailProviderFactory(repository)
 
         viewModel = ViewModelProvider(this, viewModelProviderFactory).get(EmailViewModel::class.java)
         binding.emailViewModel = viewModel

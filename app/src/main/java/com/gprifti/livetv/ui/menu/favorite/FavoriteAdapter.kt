@@ -10,8 +10,7 @@ import com.gprifti.livetv.data.db.FavoriteEntity
 import com.gprifti.livetv.utils.ParseImage
 
 
-class FavoriteAdapter(private val list: List<FavoriteEntity>) :
-    RecyclerView.Adapter<MovieViewHolder>() {
+class FavoriteAdapter(private val list: List<FavoriteEntity>) : RecyclerView.Adapter<MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -27,7 +26,7 @@ class FavoriteAdapter(private val list: List<FavoriteEntity>) :
 }
 
 class MovieViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
-    RecyclerView.ViewHolder(inflater.inflate(R.layout.adapter_list_favorite, parent, false)) {
+        RecyclerView.ViewHolder(inflater.inflate(R.layout.adapter_list_favorite, parent, false)) {
 
     private var mTitleView: TextView
     private var img: ImageView
@@ -39,9 +38,7 @@ class MovieViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
     fun bind(favoriteEntity: FavoriteEntity) {
         mTitleView.text = favoriteEntity.tittle
-         ParseImage.parseImg(itemView.context, favoriteEntity.imagePath, img)
-        // mYearView?.text = movie.year.toString()
+        ParseImage.parseImg(itemView.context, favoriteEntity.imagePath, img)
     }
-
 }
 

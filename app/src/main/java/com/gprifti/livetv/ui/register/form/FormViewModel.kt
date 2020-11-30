@@ -9,7 +9,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gprifti.livetv.data.model.dto.FormStateDto
 import com.gprifti.livetv.data.repository.Repository
-import com.gprifti.livetv.utils.*
+import com.gprifti.livetv.utils.EMAIL_PATERN
+import com.gprifti.livetv.utils.FileldType
+import com.gprifti.livetv.utils.InternetConnection
 import kotlinx.coroutines.launch
 import org.json.JSONException
 import org.json.JSONObject
@@ -24,7 +26,6 @@ class FormViewModel(private val ctx: Context, private val repository: Repository
     init {
         viewModelScope.launch {
             preSetEmail.value = repository.getEmail()
-
         }
     }
 

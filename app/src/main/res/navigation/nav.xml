@@ -37,7 +37,7 @@
     <fragment
         android:id="@+id/formFragment"
         android:name="com.gprifti.livetv.ui.register.form.FormFragment"
-        android:label="FormFragment" >
+        android:label="FormFragment">
         <action
             android:id="@+id/action_formFragment_to_nav_graph_bottom"
             app:destination="@id/nav_graph_bottom" />

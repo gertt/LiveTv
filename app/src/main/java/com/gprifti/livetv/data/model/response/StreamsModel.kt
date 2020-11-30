@@ -14,12 +14,6 @@ import com.google.gson.annotations.SerializedName
     @field:SerializedName("img")
     var img: String? = null
 
-     @field:SerializedName("header")
-     var header: Int? = null
-
-    @field:SerializedName("username")
-    var username: String? = null
-
     @field:SerializedName("url_stream")
     var urlStream: String? = null
 

@@ -67,8 +67,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:inputType="textEmailAddress"
             android:autofillHints="email"
+            android:inputType="textEmailAddress"
             app:backgroundTint="@color/blue_filter_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
@@ -78,12 +78,12 @@
             app:layout_constraintWidth_percent="0.8" />
 
         <TextView
-            android:textColor="@color/blue_filter_color"
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
             android:text="@string/label_email"
+            android:textColor="@color/blue_filter_color"
             app:layout_constraintBottom_toTopOf="@+id/email_edx"
             app:layout_constraintStart_toStartOf="@+id/email_edx" />
 

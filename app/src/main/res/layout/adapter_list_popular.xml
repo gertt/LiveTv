@@ -31,12 +31,12 @@
             app:layout_constraintGuide_percent="0.05" />
 
         <androidx.cardview.widget.CardView
-            app:cardBackgroundColor="#B2FFFFFF"
             android:id="@+id/cardView"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="5dp"
             android:elevation="10dp"
+            app:cardBackgroundColor="#B2FFFFFF"
             app:cardCornerRadius="8dp"
             app:cardElevation="0dp"
             app:layout_constraintDimensionRatio="1:1"
@@ -67,11 +67,11 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:gravity="center"
             android:id="@+id/txtTaskName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:gravity="center"
             android:textColor="#39FFFFFF"
             android:textSize="15sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"

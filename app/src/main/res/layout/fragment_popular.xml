@@ -16,7 +16,6 @@
         android:background="@drawable/img_background_form">
 
         <EditText
-            android:textSize="17sp"
             android:id="@+id/edx_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -30,6 +29,7 @@
             android:onTextChanged="@{popularViewModel.onQueryTextChange}"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
+            android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

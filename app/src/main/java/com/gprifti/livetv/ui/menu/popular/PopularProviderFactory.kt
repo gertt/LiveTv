@@ -8,11 +8,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.gprifti.livetv.data.repository.Repository
 
 
-class PopularProviderFactory(private val ctx: Context, private val repository: Repository) :
-    ViewModelProvider.Factory {
+class PopularProviderFactory(private val ctx: Context, private val repository: Repository) : ViewModelProvider.Factory {
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return PopularViewModel(ctx,repository) as T
+        return PopularViewModel(ctx, repository) as T
     }
 }

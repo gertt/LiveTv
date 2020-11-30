@@ -20,7 +20,6 @@ import com.gprifti.livetv.data.repository.Repository
 import com.gprifti.livetv.databinding.FragmentSplashBinding
 
 
-
 class SplashFragment : Fragment() {
 
     private lateinit var viewModel: SplashViewModel
@@ -33,8 +32,8 @@ class SplashFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_splash, container, false)
 
         val repository = Repository(LiveTvDatabase(ctx), PrefStorage(ctx))
-        val viewModelProviderFactory = SplashProviderFactory(ctx,repository)
-        viewModel = ViewModelProvider(this , viewModelProviderFactory).get(SplashViewModel::class.java)
+        val viewModelProviderFactory = SplashProviderFactory(ctx, repository)
+        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(SplashViewModel::class.java)
         binding.splashViewModel = viewModel
         return binding.root;
     }
@@ -42,8 +41,8 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-         changeOpacity(binding.splashImg)
-         changeView(view)
+        changeOpacity(binding.splashImg)
+        changeView(view)
         view.findViewById<View>(R.id.splash_img).setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_emailFragment)
         }
@@ -57,11 +56,11 @@ class SplashFragment : Fragment() {
     }
 
     private fun changeView(view: View) {
-        viewModel.changeView.observe(viewLifecycleOwner, Observer {state ->
-          when(state){
-              0 ->    Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_emailFragment)
-              1 ->   Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_emailFragment)
-          }
+        viewModel.changeView.observe(viewLifecycleOwner, Observer { state ->
+            when (state) {
+                0 -> Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_emailFragment)
+                1 -> Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_emailFragment)
+            }
         })
     }
 }

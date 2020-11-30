@@ -32,7 +32,7 @@ class PopularViewModel(private val ctx: Context, private val repository: Reposit
                     stateView.value = 3
                 }
             }
-        }else stateView.value = 2
+        } else stateView.value = 2
     }
 
     fun onQueryTextChange(s: CharSequence, start: Int, before: Int, count: Int) {
@@ -42,9 +42,9 @@ class PopularViewModel(private val ctx: Context, private val repository: Reposit
             searchJob = coroutineScope.launch {
                 delay(2000)
                 if (s.isNotEmpty())
-                        searchResult.value = repository.getStreamsByTittle(s.toString())
-                        stateView.value = 4
+                    searchResult.value = repository.getStreamsByTittle(s.toString())
+                stateView.value = 4
             }
-        }else stateView.value = 2
+        } else stateView.value = 2
     }
 }

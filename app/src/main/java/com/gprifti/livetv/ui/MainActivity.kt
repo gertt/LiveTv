@@ -2,17 +2,11 @@ package com.gprifti.livetv.ui
 
 import android.os.Build
 import android.os.Bundle
-import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
 import com.amitshekhar.DebugDB
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.gprifti.livetv.R
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,8 +17,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-     //   navController = findNavController(this, R.id.fragment)
-      //  bottomNav.setupWithNavController(navController)
+        //   navController = findNavController(this, R.id.fragment)
+        //  bottomNav.setupWithNavController(navController)
 
         var sgs = DebugDB.getAddressLog();
         // Open http://192.168.1.2:8080 in your browser

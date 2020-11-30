@@ -9,9 +9,9 @@ import org.json.JSONObject
 class Repository(private val db: LiveTvDatabase, private val pref: PrefStorage) {
 
     /** get datas from sharepreference */
-    suspend fun savEmail(email: String) = pref.saveEmail(email)
+    fun savEmail(email: String) = pref.saveEmail(email)
 
-    suspend fun getEmail() = pref.getEmail()
+    fun getEmail() = pref.getEmail()
 
     /** get datas from newtwork call */
     suspend fun startServer() = RetrofitInstance.api.startServer()

@@ -78,12 +78,12 @@ class FavoriteFragment : Fragment() {
                 2 -> {
                     binding.includedLayoutView.loadView.visibility = View.VISIBLE
                     binding.includedLayoutLoader.progressBar.visibility = View.INVISIBLE
-                    view?.snack("no intenet ")
+                    view?.snack(getString(R.string.snack_no_internet))
                 }
                 3 -> {
                     binding.includedLayoutView.loadView.visibility = View.VISIBLE
                     binding.includedLayoutLoader.progressBar.visibility = View.INVISIBLE
-                    view?.snack("something wrong")
+                    view?.snack(getString(R.string.snack_something_wrong))
                 }
                 4 -> {
                     binding.includedLayoutView.loadView.visibility = View.INVISIBLE
