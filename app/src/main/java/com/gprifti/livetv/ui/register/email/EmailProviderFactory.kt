@@ -4,7 +4,6 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
 import com.gprifti.livetv.data.repository.Repository
 
 class EmaiProviderFactory( private val repository: Repository) : ViewModelProvider.Factory {

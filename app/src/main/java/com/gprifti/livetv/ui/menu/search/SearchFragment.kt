@@ -1,5 +1,6 @@
 package com.gprifti.livetv.ui.menu.search
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,13 +21,14 @@ import com.gprifti.livetv.data.db.LiveTvDatabase
 import com.gprifti.livetv.data.model.response.StreamsModel
 import com.gprifti.livetv.data.pref.PrefStorage
 import com.gprifti.livetv.data.repository.Repository
-import com.gprifti.livetv.databinding.FragmentSearchBindingImpl
+import com.gprifti.livetv.databinding.FragmentSearchBinding
+
 import com.gprifti.livetv.utils.SnackBar.Companion.snack
 
 
 class SearchFragment : Fragment() {
 
-    private lateinit var binding: FragmentSearchBindingImpl
+    private lateinit var binding: FragmentSearchBinding
     private lateinit var viewModel: SearchViewModel
     private lateinit var searchAdapter: SearchAdapter
     private lateinit var ctx: Context
@@ -59,11 +61,12 @@ class SearchFragment : Fragment() {
         backPress()
     }
 
+    @SuppressLint("WrongConstant")
     private fun initRecyclerView() {
-        binding.recyclerViewSearchr.layoutManager = LinearLayoutManager(ctx, LinearLayout.VERTICAL, false)
+        binding.recyclerViewSearch.layoutManager = LinearLayoutManager(ctx, LinearLayout.VERTICAL, false)
         viewModel.searchResult.observe(viewLifecycleOwner, Observer {
             searchAdapter = SearchAdapter(ctx,navController,it as ArrayList<StreamsModel>)
-            binding.recyclerViewSearchr.adapter = searchAdapter
+            binding.recyclerViewSearch.adapter = searchAdapter
         })
     }
 
