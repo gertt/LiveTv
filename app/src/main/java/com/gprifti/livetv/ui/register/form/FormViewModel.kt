@@ -9,8 +9,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gprifti.livetv.data.model.dto.FormStateDto
 import com.gprifti.livetv.data.repository.Repository
-import com.gprifti.livetv.utils.EMAIL_PATERN
-import com.gprifti.livetv.utils.FileldType
+import com.gprifti.livetv.utils.EMAIL_PATTERN
+import com.gprifti.livetv.utils.FieldType
 import com.gprifti.livetv.utils.InternetConnection
 import kotlinx.coroutines.launch
 import org.json.JSONException
@@ -33,22 +33,22 @@ class FormViewModel(private val ctx: Context, private val repository: Repository
     @RequiresApi(Build.VERSION_CODES.M)
     fun clickNextButtonForm(username: String, email: String, pass: String, surname: String, phone: String) {
         if (username.isEmpty() || username.length < 5)
-            validateForm.value = FormStateDto(0, FileldType.USERNAME.field)
-        else if (email.isEmpty() || !email.matches(EMAIL_PATERN))
-            validateForm.value = FormStateDto(1, FileldType.EMAIL.field)
+            validateForm.value = FormStateDto(0, FieldType.USERNAME.field)
+        else if (email.isEmpty() || !email.matches(EMAIL_PATTERN))
+            validateForm.value = FormStateDto(1, FieldType.EMAIL.field)
         else if (pass.isEmpty() || pass.length < 5)
-            validateForm.value = FormStateDto(2, FileldType.PASS.field)
+            validateForm.value = FormStateDto(2, FieldType.PASS.field)
         else if (surname.isEmpty() || surname.length < 5)
-            validateForm.value = FormStateDto(3, FileldType.SURNAME.field)
+            validateForm.value = FormStateDto(3, FieldType.SURNAME.field)
         else if (phone.isEmpty() || phone.length < 5)
-            validateForm.value = FormStateDto(4, FileldType.PHONE.field)
+            validateForm.value = FormStateDto(4, FieldType.PHONE.field)
         else {
 
             if (InternetConnection.isOnline(ctx)) {
                 viewModelScope.launch {
                     stateView.value = 1
                     try {
-                        var result = repository.register(createPayload(username, email, pass, surname, phone)).code()
+                        val result = repository.register(createPayload(username, email, pass, surname, phone)).code()
                         if (result == 201) stateView.value = 4
                         else stateView.value = 3
                     } catch (e: Exception) {
@@ -63,11 +63,11 @@ class FormViewModel(private val ctx: Context, private val repository: Repository
 
         val payloadObj = JSONObject()
         try {
-            payloadObj.put(FileldType.USERNAME.field, username)
-            payloadObj.put(FileldType.EMAIL.field, email)
-            payloadObj.put(FileldType.PASS.field, pass)
-            payloadObj.put(FileldType.SURNAME.field, surname)
-            payloadObj.put(FileldType.PHONE.field, phone)
+            payloadObj.put(FieldType.USERNAME.field, username)
+            payloadObj.put(FieldType.EMAIL.field, email)
+            payloadObj.put(FieldType.PASS.field, pass)
+            payloadObj.put(FieldType.SURNAME.field, surname)
+            payloadObj.put(FieldType.PHONE.field, phone)
         } catch (e: JSONException) {
             e.printStackTrace()
         }

@@ -21,7 +21,7 @@ class SplashViewModel(private val ctx: Context, private val repository: Reposito
     init {
         viewModelScope.launch {
             if (InternetConnection.isOnline(ctx))
-                repository.startServer();
+                repository.startServer()
                 delay(3000)
             withContext(Dispatchers.Main) {
                 if (repository.getEmail()?.isNotEmpty() == true)

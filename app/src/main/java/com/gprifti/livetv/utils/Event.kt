@@ -2,8 +2,7 @@ package com.gprifti.livetv.utils
 
 open class Event<out T>(private val content: T) {
 
-    var hasBeenHandled = false
-        private set
+    private var hasBeenHandled = false
 
     fun getContentIfNotHandled(): T? {
         return if (hasBeenHandled) {

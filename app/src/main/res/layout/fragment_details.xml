@@ -56,6 +56,7 @@
                 app:layout_constraintVertical_bias="0.100000024">
 
                 <ImageView
+                    android:contentDescription="@null"
                     android:id="@+id/img_header"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -82,6 +83,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
+                        android:contentDescription="@null"
                         android:id="@+id/img_play"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -91,6 +93,7 @@
                         app:layout_constraintVertical_bias="0.0" />
 
                     <ImageView
+                        android:contentDescription="@null"
                         android:id="@+id/imageView_upper"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
@@ -131,9 +134,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:gravity="left"
+                android:gravity="start"
                 android:lineSpacingExtra="8dp"
-                android:text="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim."
+                android:text="@string/test_text"
                 android:textColor="@color/white"
                 android:textSize="17sp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"

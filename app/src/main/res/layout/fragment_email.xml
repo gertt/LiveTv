@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -62,6 +63,7 @@
             app:layout_constraintWidth_percent="0.18" />
 
         <EditText
+            tools:ignore="LabelFor"
             android:id="@+id/email_edx"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

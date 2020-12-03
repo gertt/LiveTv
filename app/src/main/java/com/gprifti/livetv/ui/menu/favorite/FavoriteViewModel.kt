@@ -12,7 +12,7 @@ import com.gprifti.livetv.utils.InternetConnection
 import kotlinx.coroutines.launch
 
 @RequiresApi(Build.VERSION_CODES.M)
-class FavoriteViewModel(private val ctx: Context, private val repository: Repository) :
+class FavoriteViewModel(ctx: Context, private val repository: Repository) :
         ViewModel() {
 
     var favoriteResult = MutableLiveData<List<FavoriteEntity>>()

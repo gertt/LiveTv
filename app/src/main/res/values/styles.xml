@@ -10,9 +10,9 @@
     </style>
 
     <style name="NavigationTheme" parent="AppTheme">
-        <item name="itemIconTint">#3BFFFFFF</item>
-        <item name="itemTextColor">#2DFFFFFF</item>
-        <item name="android:background">#4FFFFFFF</item>
+        <item name="itemIconTint">@color/color_icon_tint</item>
+        <item name="itemTextColor">@color/color_item_text</item>
+        <item name="android:background">@color/color_item_background</item>
     </style>
 
 </resources>

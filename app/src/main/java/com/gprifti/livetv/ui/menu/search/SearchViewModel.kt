@@ -19,10 +19,11 @@ class SearchViewModel(private val ctx: Context, private val repository: Reposito
 
     private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
     private var searchJob: Job? = null
+    private var keyword: String = ""
 
     var searchResult = MutableLiveData<ArrayList<StreamsModel>>()
     var filterCategory = MutableLiveData<Int>()
-    var keyword: String = ""
+
     var stateView = MutableLiveData<Int>()
 
     init {
@@ -44,7 +45,7 @@ class SearchViewModel(private val ctx: Context, private val repository: Reposito
             searchJob?.cancel()
             stateView.value = 1
             searchJob = coroutineScope.launch {
-                s?.let {
+                s.let {
                     delay(400)
                     searchResult.value = repository.getStreamsByTittle(s.toString())
                     keyword = s.toString()
@@ -75,7 +76,7 @@ class SearchViewModel(private val ctx: Context, private val repository: Reposito
         if (InternetConnection.isOnline(ctx)) {
             viewModelScope.launch {
                 stateView.value = 1
-                if (category.equals(FilterType.ALL.filter)) {
+                if (category == FilterType.ALL.filter) {
                     searchResult.value = repository.getStreamsByTittle(keyword)
                 } else {
                     searchResult.value = repository.getStreamsByTittleCategory(keyword, category)

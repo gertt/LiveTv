@@ -21,6 +21,6 @@ interface APISearch {
     suspend fun getStreamsByTittleCategory(@Query("tittle_like") tittle: String,
                                            @Query("category") category: String): ArrayList<StreamsModel>
 
-    @GET("/streams")
-    suspend fun getStreamsByCategory(@Query("category") category: String): ArrayList<StreamsModel>
+   /* @GET("/streams")
+    suspend fun getStreamsByCategory(@Query("category") category: String): ArrayList<StreamsModel>*/
 }

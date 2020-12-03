@@ -28,13 +28,8 @@ class FavoriteAdapter(private val list: List<FavoriteEntity>) : RecyclerView.Ada
 class MovieViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         RecyclerView.ViewHolder(inflater.inflate(R.layout.adapter_list_favorite, parent, false)) {
 
-    private var mTitleView: TextView
-    private var img: ImageView
-
-    init {
-        mTitleView = itemView.findViewById(R.id.txt_tittle)
-        img = itemView.findViewById(R.id.img_channel)
-    }
+    private var mTitleView: TextView = itemView.findViewById(R.id.txt_tittle)
+    private var img: ImageView = itemView.findViewById(R.id.img_channel)
 
     fun bind(favoriteEntity: FavoriteEntity) {
         mTitleView.text = favoriteEntity.tittle

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gprifti.livetv.data.model.dto.FormStateDto
 import com.gprifti.livetv.data.repository.Repository
-import com.gprifti.livetv.utils.EMAIL_PATERN
+import com.gprifti.livetv.utils.EMAIL_PATTERN
 import com.gprifti.livetv.utils.Event
 import kotlinx.coroutines.launch
 
@@ -25,7 +25,7 @@ class EmailViewModel(private val repository: Repository) : ViewModel() {
 
     fun clickNextButton(email: String) {
         viewModelScope.launch {
-            if (email.isNotEmpty() && email.matches(EMAIL_PATERN)) {
+            if (email.isNotEmpty() && email.matches(EMAIL_PATTERN)) {
                 email(email)
                 validateEmail.value = Event(FormStateDto(0, ""))
             } else

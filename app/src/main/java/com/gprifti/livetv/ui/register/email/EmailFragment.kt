@@ -56,7 +56,7 @@ class EmailFragment : Fragment() {
                 it.getContentIfNotHandled()?.let {
                     when(it.id){
                         0 -> navController.navigate(R.id.action_emailFragment_to_formFragment)
-                        1 -> view?.snack(getString(R.string.snack_txt_form, it.field))
+                        1 -> view.snack(getString(R.string.snack_txt_form, it.field))
                     }
                 }
         })

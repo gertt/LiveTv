@@ -16,10 +16,10 @@ import com.gprifti.livetv.utils.ParseImage
 import com.gprifti.livetv.utils.VIDEO_URL
 
 
-class SearchAdapter(private val ctx: Context, private val nav: NavController, val items: ArrayList<StreamsModel>) :
+class SearchAdapter(private val ctx: Context, private val nav: NavController, private val items: ArrayList<StreamsModel>) :
         RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: AdapterListSearchBinding = DataBindingUtil.inflate(
                 LayoutInflater.from(ctx),
                 R.layout.adapter_list_search, parent, false
@@ -27,8 +27,8 @@ class SearchAdapter(private val ctx: Context, private val nav: NavController, va
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: SearchAdapter.ViewHolder, position: Int) {
-        holder.bind(items.get(position), nav)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(items[position], nav)
     }
 
     override fun getItemCount(): Int = items.size
@@ -37,13 +37,17 @@ class SearchAdapter(private val ctx: Context, private val nav: NavController, va
             RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: StreamsModel, nav: NavController) {
-            binding.txtTittle.setText(item.tittle)
+            binding.txtTittle.text = item.tittle
             ParseImage.parseImg(itemView.context, item.img, binding.imgChannel)
 
-            binding.cardView.setOnClickListener({
-                nav.navigate(R.id.action_searchFragment_to_detailsFragment2, bundleOf(IMAGE_URL to item.img.toString(),
-                        VIDEO_URL to item.urlStream))
-            })
+            binding.cardView.setOnClickListener {
+                nav.navigate(
+                    R.id.action_searchFragment_to_detailsFragment2, bundleOf(
+                        IMAGE_URL to item.img.toString(),
+                        VIDEO_URL to item.urlStream
+                    )
+                )
+            }
 
             binding.setVariable(BR.streamsModel, item)
             binding.executePendingBindings()

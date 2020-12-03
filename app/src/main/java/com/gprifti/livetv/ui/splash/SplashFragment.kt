@@ -35,7 +35,7 @@ class SplashFragment : Fragment() {
         val viewModelProviderFactory = SplashProviderFactory(ctx, repository)
         viewModel = ViewModelProvider(this, viewModelProviderFactory).get(SplashViewModel::class.java)
         binding.splashViewModel = viewModel
-        return binding.root;
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

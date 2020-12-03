@@ -45,7 +45,7 @@ class PlayFragment : Fragment(), Player.EventListener {
     private lateinit var binding: FragmentPlayBinding
     private lateinit var viewModel: PlayViewModel
 
-    var scope = MainScope()
+    private var scope = MainScope()
 
     private var firstTimeBackPress: Long = 0
 
@@ -86,7 +86,7 @@ class PlayFragment : Fragment(), Player.EventListener {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
-        var recipient = requireArguments().getString("videoUrl")
+        val recipient = requireArguments().getString("videoUrl")
 
         if (recipient != null) {
             HLS_STATIC_URL = recipient
@@ -140,7 +140,7 @@ class PlayFragment : Fragment(), Player.EventListener {
     }
 
     private fun initPlayer() {
-        exoPlayer = SimpleExoPlayer.Builder(this!!.requireContext()).build().apply {
+        exoPlayer = SimpleExoPlayer.Builder(this.requireContext()).build().apply {
             playWhenReady = isPlayerPlaying
             seekTo(currentWindow, playbackPosition)
             setMediaItem(mediaItem, false)
@@ -150,17 +150,17 @@ class PlayFragment : Fragment(), Player.EventListener {
     }
 
     override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
-        if (playbackState == Player.STATE_BUFFERING)
-            binding.includedLayoutLoader.progressBar.visibility = View.VISIBLE
-        else if (playbackState == Player.STATE_READY)
-            binding.includedLayoutLoader.progressBar.visibility = View.INVISIBLE
-        else if (playbackState == Player.STATE_IDLE) {
-            binding.includedLayoutLoader.progressBar.visibility = View.VISIBLE
-            startCheck()
+        when (playbackState) {
+            Player.STATE_BUFFERING -> binding.includedLayoutLoader.progressBar.visibility = View.VISIBLE
+            Player.STATE_READY -> binding.includedLayoutLoader.progressBar.visibility = View.INVISIBLE
+            Player.STATE_IDLE -> {
+                binding.includedLayoutLoader.progressBar.visibility = View.VISIBLE
+                startCheck()
+            }
         }
     }
 
-    fun startCheck() {
+    private fun startCheck() {
         scope.launch {
             while (true) {
                 if (InternetConnection.isOnline(ctx)) {
@@ -173,7 +173,7 @@ class PlayFragment : Fragment(), Player.EventListener {
         }
     }
 
-    fun stopCheck() {
+    private fun stopCheck() {
         scope.cancel()
         scope = MainScope()
     }

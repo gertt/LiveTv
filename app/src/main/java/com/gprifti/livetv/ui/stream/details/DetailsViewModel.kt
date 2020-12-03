@@ -7,9 +7,6 @@ import com.gprifti.livetv.data.repository.Repository
 class DetailsViewModel(
     private val ctx: Context,
     private val repository: Repository
-) : ViewModel() {
-
-
-}
+) : ViewModel()
 
 

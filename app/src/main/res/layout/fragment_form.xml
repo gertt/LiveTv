@@ -58,6 +58,7 @@
             app:layout_constraintVertical_bias="0.071" />
 
         <EditText
+            tools:ignore="LabelFor"
             android:id="@+id/txt_username"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -73,6 +74,7 @@
             app:layout_constraintVertical_bias="0.97" />
 
         <EditText
+            tools:ignore="LabelFor"
             android:id="@+id/txt_email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -86,6 +88,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txt_username" />
 
         <EditText
+            tools:ignore="LabelFor"
             android:id="@+id/txt_pass"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -100,6 +103,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txt_email" />
 
         <EditText
+            tools:ignore="LabelFor"
             android:id="@+id/txt_surname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -113,6 +117,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txt_pass" />
 
         <EditText
+            tools:ignore="LabelFor"
             android:id="@+id/txt_phone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -193,6 +198,7 @@
             app:layout_constraintStart_toStartOf="@+id/txt_phone" />
 
         <ImageView
+            android:contentDescription="@null"
             android:id="@+id/img_back_bt"
             android:layout_width="0dp"
             android:layout_height="0dp"

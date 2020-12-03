@@ -1,6 +1,6 @@
 package com.gprifti.livetv.utils
 
-val EMAIL_PATERN = Regex("""\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6}""")
+val EMAIL_PATTERN = Regex("""\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6}""")
 
 const val KEY_EMAIL = "email"
 

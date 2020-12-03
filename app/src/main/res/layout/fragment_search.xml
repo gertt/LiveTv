@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@drawable/search_input_background"
-            android:drawableLeft="@drawable/ic_search_filter"
+            android:drawableStart="@drawable/ic_search_filter"
             android:drawablePadding="10dp"
             android:ems="20"
             android:hint="Search"

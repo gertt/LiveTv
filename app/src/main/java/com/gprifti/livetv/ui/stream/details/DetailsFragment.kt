@@ -51,11 +51,12 @@ class DetailsFragment : Fragment() {
         ParseImage.parseImg(ctx, requireArguments().getString(IMAGE_URL), binding.imgHeader)
         ParseImage.parseImg(ctx, requireArguments().getString(IMAGE_URL), binding.imgPlay)
 
-        binding.cardPlay.setOnClickListener({
+        binding.cardPlay.setOnClickListener {
             navController.navigate(
-                    R.id.action_detailsFragment2_to_playFragment, bundleOf(VIDEO_URL to requireArguments().getString(VIDEO_URL))
+                R.id.action_detailsFragment2_to_playFragment,
+                bundleOf(VIDEO_URL to requireArguments().getString(VIDEO_URL))
             )
-        })
+        }
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         backPress()
