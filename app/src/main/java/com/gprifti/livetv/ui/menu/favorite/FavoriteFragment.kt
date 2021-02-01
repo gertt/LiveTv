@@ -4,54 +4,32 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.activity.OnBackPressedCallback
-import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gprifti.livetv.R
-import com.gprifti.livetv.data.db.LiveTvDatabase
-import com.gprifti.livetv.data.pref.PrefStorage
-import com.gprifti.livetv.data.repository.Repository
 import com.gprifti.livetv.databinding.FragmentFavoriteBinding
 import com.gprifti.livetv.utils.SnackBar.Companion.snack
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-
-class FavoriteFragment : Fragment() {
-
+@AndroidEntryPoint
+class FavoriteFragment : Fragment(R.layout.fragment_favorite) {
 
     private lateinit var binding: FragmentFavoriteBinding
-    private lateinit var viewModel: FavoriteViewModel
     private lateinit var favoriteAdapter: FavoriteAdapter
-    private lateinit var ctx: Context
     private lateinit var navController: NavController
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        ctx = container!!.context
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favorite, container, false)
-        val repository = Repository(LiveTvDatabase(ctx), PrefStorage(ctx))
-        val viewModelProviderFactory = FavoriteProviderFactory(ctx, repository)
-
-        viewModel =
-            ViewModelProvider(this, viewModelProviderFactory).get(FavoriteViewModel::class.java)
-        binding.favoriteViewModel = viewModel
-        binding.lifecycleOwner = this
-        return binding.root
-
-    }
+    private  val viewModel: FavoriteViewModel by viewModels()
+    @Inject lateinit var  ctx: Context
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = FragmentFavoriteBinding.bind(view)
         navController = Navigation.findNavController(view)
 
         initRecyclerView()

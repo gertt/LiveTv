@@ -3,16 +3,17 @@ package com.gprifti.livetv.ui.menu.popular
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gprifti.livetv.data.model.response.StreamsModel
 import com.gprifti.livetv.data.repository.Repository
 import com.gprifti.livetv.utils.InternetConnection
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.*
 
-
 @RequiresApi(Build.VERSION_CODES.M)
-class PopularViewModel(private val ctx: Context, private val repository: Repository) : ViewModel() {
+class PopularViewModel @ViewModelInject constructor (@ApplicationContext private val ctx: Context, private val repository: Repository) : ViewModel() {
 
     var searchResult = MutableLiveData<ArrayList<StreamsModel>>()
     var stateView = MutableLiveData<Int>()
@@ -35,7 +36,7 @@ class PopularViewModel(private val ctx: Context, private val repository: Reposit
         } else stateView.value = 2
     }
 
-    fun onQueryTextChange(s: CharSequence, start: Int, before: Int, count: Int) {
+    fun onQueryTextChange(s: CharSequence) {
         if (InternetConnection.isOnline(ctx)) {
             searchJob?.cancel()
             stateView.value = 1

@@ -9,7 +9,7 @@ import com.gprifti.livetv.R
 import com.gprifti.livetv.data.model.response.StreamsModel
 import com.gprifti.livetv.utils.ParseImage
 
-class PopularAdapter(private val list: List<StreamsModel>) : RecyclerView.Adapter<MovieViewHolder>() {
+class PopularAdapter(private val list: List<StreamsModel>): RecyclerView.Adapter<MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val inflater = LayoutInflater.from(parent.context)

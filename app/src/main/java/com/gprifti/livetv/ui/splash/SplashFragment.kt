@@ -1,45 +1,29 @@
 package com.gprifti.livetv.ui.splash
 
-import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import android.widget.ImageView
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.gprifti.livetv.R
-import com.gprifti.livetv.data.db.LiveTvDatabase
-import com.gprifti.livetv.data.pref.PrefStorage
-import com.gprifti.livetv.data.repository.Repository
 import com.gprifti.livetv.databinding.FragmentSplashBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
-class SplashFragment : Fragment() {
+@AndroidEntryPoint
+class SplashFragment : Fragment(R.layout.fragment_splash) {
 
-    private lateinit var viewModel: SplashViewModel
+    private val viewModel: SplashViewModel by viewModels()
     private lateinit var navController: NavController
     private lateinit var binding: FragmentSplashBinding
-    private lateinit var ctx: Context
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        ctx = container!!.context
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_splash, container, false)
-
-        val repository = Repository(LiveTvDatabase(ctx), PrefStorage(ctx))
-        val viewModelProviderFactory = SplashProviderFactory(ctx, repository)
-        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(SplashViewModel::class.java)
-        binding.splashViewModel = viewModel
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = FragmentSplashBinding.bind(view)
         navController = Navigation.findNavController(view)
         changeOpacity(binding.splashImg)
         changeView(view)

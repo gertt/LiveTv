@@ -26,7 +26,6 @@
             android:ems="20"
             android:hint="Search"
             android:inputType="textPersonName"
-            android:onTextChanged="@{popularViewModel.onQueryTextChange}"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="17sp"

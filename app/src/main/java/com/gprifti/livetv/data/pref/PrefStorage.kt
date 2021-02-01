@@ -4,15 +4,14 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import com.gprifti.livetv.utils.KEY_EMAIL
+import javax.inject.Inject
 
-class PrefStorage(context: Context?) {
+class PrefStorage @Inject constructor(context: Context) {
 
-    private val appContext = context?.applicationContext
+    private val appContext = context.applicationContext
 
     private val preference: SharedPreferences
-        get() = PreferenceManager.getDefaultSharedPreferences(
-                appContext
-        )
+        get() = PreferenceManager.getDefaultSharedPreferences( appContext )
 
     fun saveEmail(email: String) {
         preference.edit().putString(KEY_EMAIL, email).apply()

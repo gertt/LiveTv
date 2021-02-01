@@ -21,7 +21,10 @@ import com.gprifti.livetv.databinding.FragmentDetailsBinding
 import com.gprifti.livetv.utils.IMAGE_URL
 import com.gprifti.livetv.utils.ParseImage
 import com.gprifti.livetv.utils.VIDEO_URL
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class DetailsFragment : Fragment() {
 
     private lateinit var navController: NavController
@@ -35,11 +38,11 @@ class DetailsFragment : Fragment() {
         ctx = container!!.context
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_details, container, false)
 
-        val repository = Repository(LiveTvDatabase(ctx), PrefStorage(ctx))
-        val viewModelProviderFactory = DetailsProviderFactory(ctx, repository)
+      //  val repository = Repository(LiveTvDatabase(ctx), PrefStorage(ctx))
+     //   val viewModelProviderFactory = DetailsProviderFactory(ctx, repository)
 
-        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(DetailsViewModel::class.java)
-        binding.detailsViewModel = viewModel
+      //  viewModel = ViewModelProvider(this, viewModelProviderFactory).get(DetailsViewModel::class.java)
+      //  binding.detailsViewModel = viewModel
         binding.lifecycleOwner = this
         return binding.root
     }

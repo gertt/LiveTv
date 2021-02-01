@@ -1,6 +1,6 @@
 package com.gprifti.livetv.ui.register.email
 
-
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,8 +10,7 @@ import com.gprifti.livetv.utils.EMAIL_PATTERN
 import com.gprifti.livetv.utils.Event
 import kotlinx.coroutines.launch
 
-
-class EmailViewModel(private val repository: Repository) : ViewModel() {
+class EmailViewModel @ViewModelInject constructor (private val repository: Repository) : ViewModel() {
 
     val validateEmail: MutableLiveData<Event<FormStateDto>> = MutableLiveData()
     var setEmail = MutableLiveData<String>()

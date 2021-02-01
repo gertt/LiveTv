@@ -9,7 +9,6 @@ import com.gprifti.livetv.R
 import com.gprifti.livetv.data.db.FavoriteEntity
 import com.gprifti.livetv.utils.ParseImage
 
-
 class FavoriteAdapter(private val list: List<FavoriteEntity>) : RecyclerView.Adapter<MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {

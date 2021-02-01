@@ -9,8 +9,11 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.gprifti.livetv.R
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
+
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.M)

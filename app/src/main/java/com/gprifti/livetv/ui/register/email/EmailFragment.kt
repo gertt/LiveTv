@@ -1,54 +1,38 @@
 package com.gprifti.livetv.ui.register.email
 
-import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.gprifti.livetv.R
-import com.gprifti.livetv.data.db.LiveTvDatabase
-import com.gprifti.livetv.data.pref.PrefStorage
-import com.gprifti.livetv.data.repository.Repository
 import com.gprifti.livetv.databinding.FragmentEmailBinding
 import com.gprifti.livetv.utils.SnackBar.Companion.snack
+import dagger.hilt.android.AndroidEntryPoint
 
-
-
-class EmailFragment : Fragment() {
+@AndroidEntryPoint
+class EmailFragment : Fragment(R.layout.fragment_email) {
 
     private lateinit var binding: FragmentEmailBinding
-    private lateinit var viewModel: EmailViewModel
     private lateinit var navController: NavController
-    private lateinit var ctx: Context
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        ctx = container!!.context
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_email, container, false)
-        val repository = Repository(LiveTvDatabase(ctx), PrefStorage(ctx))
-        val viewModelProviderFactory = EmailProviderFactory(repository)
-
-        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(EmailViewModel::class.java)
-        binding.emailViewModel = viewModel
-        return binding.root
-    }
+    private val viewModel: EmailViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = FragmentEmailBinding.bind(view)
         navController = Navigation.findNavController(view)
 
+        setListener()
         changeView(view)
         preSetEmail()
+    }
+
+    private fun setListener(){
+        binding.nextButton.setOnClickListener {
+            viewModel.clickNextButton(binding.emailEdx.text.toString())
+        }
     }
 
     private fun changeView(view: View) {

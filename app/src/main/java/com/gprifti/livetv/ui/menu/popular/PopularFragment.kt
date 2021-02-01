@@ -2,53 +2,49 @@ package com.gprifti.livetv.ui.menu.popular
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.activity.OnBackPressedCallback
-import androidx.databinding.DataBindingUtil
+import androidx.annotation.RequiresApi
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gprifti.livetv.R
-import com.gprifti.livetv.data.db.LiveTvDatabase
-import com.gprifti.livetv.data.pref.PrefStorage
-import com.gprifti.livetv.data.repository.Repository
 import com.gprifti.livetv.databinding.FragmentPopularBinding
 import com.gprifti.livetv.utils.SnackBar.Companion.snack
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-
-class PopularFragment : Fragment() {
-
+@RequiresApi(Build.VERSION_CODES.M)
+@AndroidEntryPoint
+class PopularFragment : Fragment(R.layout.fragment_popular) {
 
     private lateinit var binding: FragmentPopularBinding
-    private lateinit var viewModel: PopularViewModel
+    private val viewModel: PopularViewModel by viewModels()
     private lateinit var popularAdapter: PopularAdapter
-    private lateinit var ctx: Context
-
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        ctx = container!!.context
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_popular, container, false)
-        val repository = Repository(LiveTvDatabase(ctx), PrefStorage(ctx))
-        val viewModelProviderFactory = PopularProviderFactory(ctx, repository)
-
-        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(PopularViewModel::class.java)
-        binding.popularViewModel = viewModel
-        binding.lifecycleOwner = this
-        return binding.root
-    }
+    @Inject lateinit var  ctx: Context
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = FragmentPopularBinding.bind(view)
+
+        setListener()
         initRecyclerView()
         viewState()
         backPress()
+    }
+
+    private fun setListener() {
+        binding.edxSearch.doOnTextChanged { text, start, before, count ->
+            text?.let {
+                viewModel.onQueryTextChange(text)
+            }
+        }
     }
 
     @SuppressLint("WrongConstant")

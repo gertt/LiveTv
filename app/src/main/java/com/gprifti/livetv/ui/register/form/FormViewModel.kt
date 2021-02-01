@@ -1,9 +1,9 @@
 package com.gprifti.livetv.ui.register.form
 
-
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,11 +12,12 @@ import com.gprifti.livetv.data.repository.Repository
 import com.gprifti.livetv.utils.EMAIL_PATTERN
 import com.gprifti.livetv.utils.FieldType
 import com.gprifti.livetv.utils.InternetConnection
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 import org.json.JSONException
 import org.json.JSONObject
 
-class FormViewModel(private val ctx: Context, private val repository: Repository) : ViewModel() {
+class FormViewModel @ViewModelInject constructor(@ApplicationContext private val ctx: Context,private val repository: Repository) : ViewModel() {
 
     var validateForm = MutableLiveData<FormStateDto>()
     var backButton = MutableLiveData<Boolean>()
@@ -28,7 +29,6 @@ class FormViewModel(private val ctx: Context, private val repository: Repository
             preSetEmail.value = repository.getEmail()
         }
     }
-
 
     @RequiresApi(Build.VERSION_CODES.M)
     fun clickNextButtonForm(username: String, email: String, pass: String, surname: String, phone: String) {
@@ -43,7 +43,6 @@ class FormViewModel(private val ctx: Context, private val repository: Repository
         else if (phone.isEmpty() || phone.length < 5)
             validateForm.value = FormStateDto(4, FieldType.PHONE.field)
         else {
-
             if (InternetConnection.isOnline(ctx)) {
                 viewModelScope.launch {
                     stateView.value = 1
@@ -60,7 +59,6 @@ class FormViewModel(private val ctx: Context, private val repository: Repository
     }
 
     private fun createPayload(username: String, email: String, pass: String, surname: String, phone: String): JSONObject {
-
         val payloadObj = JSONObject()
         try {
             payloadObj.put(FieldType.USERNAME.field, username)

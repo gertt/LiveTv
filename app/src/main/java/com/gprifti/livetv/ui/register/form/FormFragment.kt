@@ -1,51 +1,49 @@
 package com.gprifti.livetv.ui.register.form
 
-import android.content.Context
+import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.gprifti.livetv.R
-import com.gprifti.livetv.data.db.LiveTvDatabase
-import com.gprifti.livetv.data.pref.PrefStorage
-import com.gprifti.livetv.data.repository.Repository
 import com.gprifti.livetv.databinding.FragmentFormBinding
 import com.gprifti.livetv.utils.SnackBar.Companion.snack
+import dagger.hilt.android.AndroidEntryPoint
 
-
-class FormFragment : Fragment() {
+@AndroidEntryPoint
+@RequiresApi(Build.VERSION_CODES.M)
+class FormFragment : Fragment(R.layout.fragment_form) {
 
     private lateinit var binding: FragmentFormBinding
-    private lateinit var viewModel: FormViewModel
-    private lateinit var ctx: Context
     private lateinit var navController: NavController
+    private  val viewModel: FormViewModel by viewModels()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        ctx = container!!.context
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_form, container, false)
-        val repository = Repository(LiveTvDatabase(ctx), PrefStorage(ctx))
-        val viewModelProviderFactory = FormProviderFactory(ctx, repository)
-
-        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(FormViewModel::class.java)
-        binding.formViewModel = viewModel
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = FragmentFormBinding.bind(view)
         navController = Navigation.findNavController(view)
 
+        setListener()
         changeView()
         preSetEmail()
         viewState()
         backPress()
+    }
+
+    private fun setListener(){
+        binding.nextFormButton.setOnClickListener {
+            viewModel.clickNextButtonForm(
+                binding.txtUsername.text.toString(),
+                binding.txtEmail.text.toString(),
+                binding.txtPass.text.toString(),
+                binding.txtSurname.text.toString(),
+                binding.txtPhone.text.toString())
+        }
     }
 
     private fun changeView() {

@@ -2,63 +2,68 @@ package com.gprifti.livetv.ui.menu.search
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.activity.OnBackPressedCallback
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gprifti.livetv.R
-import com.gprifti.livetv.data.db.LiveTvDatabase
 import com.gprifti.livetv.data.model.response.StreamsModel
-import com.gprifti.livetv.data.pref.PrefStorage
-import com.gprifti.livetv.data.repository.Repository
 import com.gprifti.livetv.databinding.FragmentSearchBinding
-
 import com.gprifti.livetv.utils.SnackBar.Companion.snack
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-
-class SearchFragment : Fragment() {
+@RequiresApi(Build.VERSION_CODES.M)
+@AndroidEntryPoint
+class SearchFragment : Fragment(R.layout.fragment_search) {
 
     private lateinit var binding: FragmentSearchBinding
-    private lateinit var viewModel: SearchViewModel
     private lateinit var searchAdapter: SearchAdapter
-    private lateinit var ctx: Context
     private lateinit var navController: NavController
+    private  val viewModel: SearchViewModel by viewModels()
+    @Inject lateinit var  ctx: Context
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        ctx = container!!.context
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_search, container, false)
-        val repository = Repository(LiveTvDatabase(ctx), PrefStorage(ctx))
-        val viewModelProviderFactory = SearchProviderFactory(ctx, repository)
-
-        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(SearchViewModel::class.java)
-        binding.searchViewModel = viewModel
-        binding.lifecycleOwner = this
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = FragmentSearchBinding.bind(view)
         navController = Navigation.findNavController(view)
 
+        setListener()
         initRecyclerView()
         changeFilterCategory()
         viewState()
         backPress()
+    }
+
+    private fun  setListener(){
+        binding.edxSearch.doOnTextChanged { text, start, before, count ->
+            text?.let {
+                viewModel.onQueryTextChange(text)
+            }
+        }
+
+        binding.btAll.setOnClickListener {
+            viewModel.changeFilterState(1)
+        }
+
+        binding.btInternacional .setOnClickListener {
+            viewModel.changeFilterState(2)
+        }
+
+        binding.btNational.setOnClickListener {
+            viewModel.changeFilterState(3)
+        }
     }
 
     @SuppressLint("WrongConstant")

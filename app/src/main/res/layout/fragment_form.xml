@@ -139,7 +139,6 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/ic_next_button"
-            android:onClick="@{() -> formViewModel.clickNextButtonForm(txtUsername.getText().toString(),txtEmail.getText().toString(),txtPass.getText().toString(),txtSurname.getText().toString(),txtPhone.getText().toString())}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"

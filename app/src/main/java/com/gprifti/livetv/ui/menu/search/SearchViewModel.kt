@@ -1,9 +1,9 @@
 package com.gprifti.livetv.ui.menu.search
 
-
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,11 +11,11 @@ import com.gprifti.livetv.data.model.response.StreamsModel
 import com.gprifti.livetv.data.repository.Repository
 import com.gprifti.livetv.utils.FilterType
 import com.gprifti.livetv.utils.InternetConnection
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.*
 
-
 @RequiresApi(Build.VERSION_CODES.M)
-class SearchViewModel(private val ctx: Context, private val repository: Repository) : ViewModel() {
+class SearchViewModel @ViewModelInject constructor (@ApplicationContext private val ctx: Context, private val repository: Repository) : ViewModel() {
 
     private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
     private var searchJob: Job? = null
@@ -40,7 +40,7 @@ class SearchViewModel(private val ctx: Context, private val repository: Reposito
         } else stateView.value = 2
     }
 
-    fun onQueryTextChange(s: CharSequence, start: Int, before: Int, count: Int) {
+    fun onQueryTextChange(s: CharSequence) {
         if (InternetConnection.isOnline(ctx)) {
             searchJob?.cancel()
             stateView.value = 1

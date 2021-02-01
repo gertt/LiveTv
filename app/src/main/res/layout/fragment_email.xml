@@ -15,7 +15,6 @@
         android:layout_height="match_parent"
         android:background="@drawable/ic_welcome_page">
 
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
             android:layout_width="wrap_content"
@@ -52,7 +51,6 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/ic_next_button"
-            android:onClick="@{() -> emailViewModel.clickNextButton(emailEdx.getText().toString())}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"

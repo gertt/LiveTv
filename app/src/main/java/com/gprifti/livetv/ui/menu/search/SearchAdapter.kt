@@ -15,11 +15,10 @@ import com.gprifti.livetv.utils.IMAGE_URL
 import com.gprifti.livetv.utils.ParseImage
 import com.gprifti.livetv.utils.VIDEO_URL
 
-
-class SearchAdapter(private val ctx: Context, private val nav: NavController, private val items: ArrayList<StreamsModel>) :
-        RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
+class SearchAdapter( private val ctx: Context, private val nav: NavController, private val items: ArrayList<StreamsModel>): RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
         val binding: AdapterListSearchBinding = DataBindingUtil.inflate(
                 LayoutInflater.from(ctx),
                 R.layout.adapter_list_search, parent, false
@@ -33,8 +32,7 @@ class SearchAdapter(private val ctx: Context, private val nav: NavController, pr
 
     override fun getItemCount(): Int = items.size
 
-    class ViewHolder(val binding: AdapterListSearchBinding) :
-            RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(val binding: AdapterListSearchBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: StreamsModel, nav: NavController) {
             binding.txtTittle.text = item.tittle
