@@ -4,7 +4,6 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 
-
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -39,6 +38,7 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 }
+
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

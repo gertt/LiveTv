@@ -1,40 +1,51 @@
 package com.gprifti.livetv.ui.menu.popular
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.gprifti.livetv.R
+import androidx.databinding.library.baseAdapters.BR
 import com.gprifti.livetv.data.model.response.StreamsModel
+import com.gprifti.livetv.databinding.AdapterListPopularBinding
+import com.gprifti.livetv.utils.IMAGE_URL
 import com.gprifti.livetv.utils.ParseImage
+import com.gprifti.livetv.utils.VIDEO_URL
 
-class PopularAdapter(private val list: List<StreamsModel>): RecyclerView.Adapter<MovieViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        return MovieViewHolder(inflater, parent)
+class PopularAdapter(private val ctx: Context, private val nav: NavController, private val items: ArrayList<StreamsModel>): RecyclerView.Adapter<PopularAdapter.ViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
+        val binding: AdapterListPopularBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(ctx),
+            R.layout.adapter_list_popular, parent, false
+        )
+        return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val movie: StreamsModel = list[position]
-        holder.bind(movie)
-    }
-    override fun getItemCount(): Int = list.size
-}
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) { holder.bind(items[position], nav) }
 
-class MovieViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
-    RecyclerView.ViewHolder(inflater.inflate(R.layout.adapter_list_popular, parent, false)) {
-    private var mTitleView: TextView? = null
-    private var img: ImageView
+    override fun getItemCount(): Int = items.size
 
-    init {
-        mTitleView = itemView.findViewById(R.id.txtTaskName)
-        img = itemView.findViewById(R.id.img_id)
-    }
+    class ViewHolder(val binding: AdapterListPopularBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: StreamsModel, nav: NavController) {
+            binding.txtTaskName.text = item.tittle
+            ParseImage.parseImg(itemView.context, item.img, binding.imgId)
 
-    fun bind(movie: StreamsModel) {
-        mTitleView?.text = movie.tittle
-        ParseImage.parseImg(itemView.context,movie.img,img)
+            binding.cardView.setOnClickListener {
+                nav.navigate(
+                    R.id.action_popularListFragment_to_detailsFragment2, bundleOf(
+                        IMAGE_URL to item.img.toString(),
+                        VIDEO_URL to item.urlStream
+                    )
+                )
+            }
+            binding.setVariable(BR.streamsModel, item)
+            binding.executePendingBindings()
+        }
     }
 }

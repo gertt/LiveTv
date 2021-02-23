@@ -1,11 +1,14 @@
 package com.gprifti.livetv.data.repository
 
 import com.gprifti.livetv.data.api.APISearch
+import com.gprifti.livetv.data.db.FavoriteEntity
+import com.gprifti.livetv.data.db.LiveTvDatabase
 import com.gprifti.livetv.data.pref.PrefStorage
 import org.json.JSONObject
 import javax.inject.Inject
 
-class Repository @Inject constructor (private val pref: PrefStorage,private val retrofit: APISearch) {
+class Repository @Inject
+constructor (private val pref: PrefStorage,private val retrofit: APISearch,private val db: LiveTvDatabase) {
 
     /** get data from sharepreference */
     fun savEmail(email: String) = pref.saveEmail(email)
@@ -24,7 +27,7 @@ class Repository @Inject constructor (private val pref: PrefStorage,private val 
     /** get and insert datas with local db */
   //  suspend fun readFavorite() = db.getTaskDao().readFavorite()
 
-  //  suspend fun insertFavorite(favorite: FavoriteEntity) = db.getTaskDao().insert(favorite)
+    suspend fun insertFavorite(favorite: FavoriteEntity) = db.getTaskDao().insert(favorite)
 
    // suspend fun deleteById(id: Long) = db.getTaskDao().deleteById(id)
 }

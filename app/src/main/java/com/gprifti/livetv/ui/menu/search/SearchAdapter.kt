@@ -15,7 +15,7 @@ import com.gprifti.livetv.utils.IMAGE_URL
 import com.gprifti.livetv.utils.ParseImage
 import com.gprifti.livetv.utils.VIDEO_URL
 
-class SearchAdapter( private val ctx: Context, private val nav: NavController, private val items: ArrayList<StreamsModel>): RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
+class SearchAdapter(private val ctx: Context, private val nav: NavController, private val items: ArrayList<StreamsModel>): RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -26,9 +26,7 @@ class SearchAdapter( private val ctx: Context, private val nav: NavController, p
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(items[position], nav)
-    }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) { holder.bind(items[position], nav) }
 
     override fun getItemCount(): Int = items.size
 
@@ -46,7 +44,6 @@ class SearchAdapter( private val ctx: Context, private val nav: NavController, p
                     )
                 )
             }
-
             binding.setVariable(BR.streamsModel, item)
             binding.executePendingBindings()
         }
