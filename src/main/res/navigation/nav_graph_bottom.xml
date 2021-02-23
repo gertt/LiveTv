@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_bottom"
+    app:startDestination="@id/popularListFragment">
+
+    <fragment
+        android:id="@+id/popularListFragment"
+        android:name="com.gprifti.livetv.ui.menu.popular.PopularFragment"
+        android:label="PopularListFragment" >
+        <action
+            android:id="@+id/action_popularListFragment_to_detailsFragment2"
+            app:destination="@id/detailsFragment2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.gprifti.livetv.ui.menu.search.SearchFragment"
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_popularListFragment"
+            app:destination="@id/popularListFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_detailsFragment2"
+            app:destination="@id/detailsFragment2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.gprifti.livetv.ui.menu.favorite.FavoriteFragment"
+        android:label="FavoriteFragment" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_detailsFragment2"
+            app:destination="@id/detailsFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment2"
+        android:name="com.gprifti.livetv.ui.stream.details.DetailsFragment"
+        android:label="DetailsFragment" >
+        <action
+            android:id="@+id/action_detailsFragment2_to_playFragment"
+            app:destination="@id/playFragment" />
+        <action
+            android:id="@+id/action_detailsFragment2_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/playFragment"
+        android:name="com.gprifti.livetv.ui.stream.play.PlayFragment"
+        android:label="fragment_play"
+        tools:layout="@layout/fragment_play" >
+        <action
+            android:id="@+id/action_playFragment_to_detailsFragment2"
+            app:destination="@id/detailsFragment2" />
+    </fragment>
+
+</navigation>
