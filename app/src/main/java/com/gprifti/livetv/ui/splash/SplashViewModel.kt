@@ -20,6 +20,7 @@ class SplashViewModel @ViewModelInject constructor(@ApplicationContext private v
 
     var changeView = MutableLiveData<Int>()
 
+
     init {
         viewModelScope.launch {
             if (InternetConnection.isOnline(ctx))
