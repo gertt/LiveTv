@@ -18,4 +18,7 @@ import com.google.gson.annotations.SerializedName
 
     @field:SerializedName("heart_status")
     var heartStatus: Boolean? = false
+
+    @field:SerializedName("duration")
+    var duration: String? = null
 }

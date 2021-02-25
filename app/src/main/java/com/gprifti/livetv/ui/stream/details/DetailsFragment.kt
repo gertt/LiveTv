@@ -7,13 +7,13 @@ import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.gprifti.livetv.R
 import com.gprifti.livetv.databinding.FragmentDetailsBinding
 import com.gprifti.livetv.utils.IMAGE_URL
 import com.gprifti.livetv.utils.ParseImage
+import com.gprifti.livetv.utils.TITTLE_STREAM
 import com.gprifti.livetv.utils.VIDEO_URL
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -23,7 +23,6 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
     private lateinit var navController: NavController
     private lateinit var binding: FragmentDetailsBinding
-    private val viewModel: DetailsViewModel by viewModels()
     @Inject lateinit var ctx: Context
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,13 +32,16 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         eventListener()
-        parseImg()
+        parseView()
         backPress()
     }
 
-    private fun parseImg() {
-        ParseImage.parseImg(ctx, requireArguments().getString(IMAGE_URL), binding.imgHeader)
-        ParseImage.parseImg(ctx, requireArguments().getString(IMAGE_URL), binding.imgPlay)
+    private fun parseView() {
+        with(ParseImage){
+            parseImg(ctx, requireArguments().getString(IMAGE_URL), binding.imgHeader)
+            parseImg(ctx, requireArguments().getString(IMAGE_URL), binding.imgPlay)
+        }
+        binding.txtTittle.text = requireArguments().getString(TITTLE_STREAM)
     }
 
     private fun eventListener() {

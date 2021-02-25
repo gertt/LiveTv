@@ -22,14 +22,11 @@ class SearchViewModel @ViewModelInject constructor (@ApplicationContext private 
     private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
     private var searchJob: Job? = null
     private var keyword: String = ""
-
+    private var arrayList = ArrayList<StreamsModel>()
+    private var arrayList2 = ArrayList<FavoriteEntity>()
 
     var searchResult = MutableLiveData<ArrayList<StreamsModel>>()
     var filterCategory = MutableLiveData<Int>()
-
-    var arrayList = ArrayList<StreamsModel>()
-    var arrayList2 = ArrayList<FavoriteEntity>()
-
     var stateView = MutableLiveData<Int>()
 
     init {
@@ -41,8 +38,6 @@ class SearchViewModel @ViewModelInject constructor (@ApplicationContext private 
                     arrayList2 = repository.readFavorite() as ArrayList<FavoriteEntity>
                     arrayList.forEachIndexed { i, el1 ->
                         arrayList2.forEachIndexed { _, el2 ->
-
-                            System.out.println("Elsrsr: ${el1.id}  and el2: ${el2.id}")
                             if (el1.id == el2.id){
                                 arrayList[i].heartStatus = true
                             }
@@ -93,7 +88,7 @@ class SearchViewModel @ViewModelInject constructor (@ApplicationContext private 
         coroutineScope.launch {
             try {
                 with(streamsModel) {
-                    var favorite = FavoriteEntity(img, urlStream, tittle)
+                     val favorite = FavoriteEntity(img, urlStream, tittle)
                     repository.insertFavorite(favorite)
                 }
             } catch (e: Exception) {}
@@ -103,14 +98,10 @@ class SearchViewModel @ViewModelInject constructor (@ApplicationContext private 
     fun deleteFavorite(streamsModel: StreamsModel) {
         coroutineScope.launch {
             try {
-                with(streamsModel) {
-                    streamsModel.id?.let { repository.deleteById(it.toLong()) }
-                }
+                streamsModel.id?.let { repository.deleteById(it.toLong()) }
             } catch (e: Exception) {}
         }
     }
-
-
 
     private fun callService(keyword: String, category: String) {
         if (InternetConnection.isOnline(ctx)) {
@@ -125,7 +116,4 @@ class SearchViewModel @ViewModelInject constructor (@ApplicationContext private 
             }
         } else stateView.value = 2
     }
-
-
-
 }

@@ -27,16 +27,13 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
         navController = Navigation.findNavController(view)
         changeOpacity(binding.splashImg)
         changeView(view)
-        view.findViewById<View>(R.id.splash_img).setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_emailFragment)
-        }
     }
 
     private fun changeOpacity(splashImg: ImageView) {
-        val animation1 = AlphaAnimation(0.0f, 1.0f)
-        animation1.duration = 2500
-        animation1.fillAfter = true
-        splashImg.startAnimation(animation1)
+        val animation = AlphaAnimation(0.0f, 1.0f)
+        animation.duration = 2500
+        animation.fillAfter = true
+        splashImg.startAnimation(animation)
     }
 
     private fun changeView(view: View) {

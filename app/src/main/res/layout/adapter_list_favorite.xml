@@ -90,7 +90,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="text missing"
                     android:textColor="@color/color_black_label_tittle"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/cardView2"

@@ -15,12 +15,7 @@ import com.gprifti.livetv.data.model.response.StreamsModel
 import com.gprifti.livetv.databinding.AdapterListSearchBinding
 import com.gprifti.livetv.utils.*
 
-class SearchAdapter(
-    private val ctx: Context,
-    private val nav: NavController,
-    private val items: ArrayList<StreamsModel>,
-    private val viewModel: SearchViewModel
-): RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
+class SearchAdapter(private val ctx: Context, private val nav: NavController, private val items: ArrayList<StreamsModel>, private val viewModel: SearchViewModel): RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -38,7 +33,6 @@ class SearchAdapter(
 
     class ViewHolder(val binding: AdapterListSearchBinding): RecyclerView.ViewHolder(binding.root) {
 
-
         @RequiresApi(Build.VERSION_CODES.M)
         fun bind(item: StreamsModel, nav: NavController, viewModel: SearchViewModel) {
             binding.txtTittle.text = item.tittle
@@ -52,7 +46,6 @@ class SearchAdapter(
                 binding.imgHeart.setImageResource(R.drawable.ic_heart_dislike)
                 binding.imgHeart.tag = NO_LIKE
             }
-
 
             binding.imgHeart.setOnClickListener {
                 if (binding.imgHeart.tag == LIKE) {
@@ -70,7 +63,8 @@ class SearchAdapter(
                 nav.navigate(
                     R.id.action_searchFragment_to_detailsFragment2, bundleOf(
                         IMAGE_URL to item.img.toString(),
-                        VIDEO_URL to item.urlStream
+                        VIDEO_URL to item.urlStream,
+                        TITTLE_STREAM to item.tittle
                     )
                 )
             }

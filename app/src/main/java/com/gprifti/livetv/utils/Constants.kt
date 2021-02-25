@@ -11,3 +11,5 @@ const val VIDEO_URL = "videoUrl"
 const val LIKE = "like"
 
 const val NO_LIKE = "noLike"
+
+const val TITTLE_STREAM = "tiitleStream"

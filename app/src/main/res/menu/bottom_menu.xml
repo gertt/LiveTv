@@ -4,16 +4,14 @@
     <item
         android:id="@+id/popularListFragment"
         android:icon="@drawable/ic_home"
-        android:title="Popular" />
-
+        android:title="@string/popular" />
     <item
         android:id="@+id/searchFragment"
         android:icon="@drawable/ic_search"
-        android:title="Search" />
-
+        android:title="@string/search" />
     <item
         android:id="@+id/favoriteFragment"
         android:icon="@drawable/ic_favorite"
-        android:title="Favorite" />
-
+        android:title="@string/favorite" />
 </menu>
+

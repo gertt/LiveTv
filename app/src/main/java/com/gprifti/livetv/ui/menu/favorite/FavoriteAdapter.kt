@@ -13,6 +13,7 @@ import com.gprifti.livetv.data.db.FavoriteEntity
 import com.gprifti.livetv.databinding.AdapterListFavoriteBinding
 import com.gprifti.livetv.utils.IMAGE_URL
 import com.gprifti.livetv.utils.ParseImage
+import com.gprifti.livetv.utils.TITTLE_STREAM
 import com.gprifti.livetv.utils.VIDEO_URL
 
 class FavoriteAdapter(private val ctx: Context, private val nav: NavController, private val items: ArrayList<FavoriteEntity>): RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
@@ -38,7 +39,8 @@ class FavoriteAdapter(private val ctx: Context, private val nav: NavController, 
                 nav.navigate(
                     R.id.action_favoriteFragment_to_detailsFragment2, bundleOf(
                         IMAGE_URL to item.imagePath.toString(),
-                        VIDEO_URL to item.urlStream
+                        VIDEO_URL to item.urlStream ,
+                        TITTLE_STREAM to item.tittle
                     )
                 )
             }

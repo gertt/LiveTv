@@ -19,11 +19,11 @@ import kotlinx.coroutines.withContext
 class SplashViewModel @ViewModelInject constructor(@ApplicationContext private val ctx: Context, private val repository: Repository): ViewModel() {
 
     var changeView = MutableLiveData<Int>()
+
     init {
         viewModelScope.launch {
-            if (InternetConnection.isOnline(ctx))
-                repository.startServer()
-                delay(500)
+            if (InternetConnection.isOnline(ctx)) repository.startServer()
+            delay(500)
             withContext(Dispatchers.Main) {
                 if (repository.getEmail()?.isNotEmpty() == true) changeView.value = 0
                 else changeView.value = 1
