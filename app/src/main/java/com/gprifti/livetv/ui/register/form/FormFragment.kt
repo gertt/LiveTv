@@ -22,7 +22,6 @@ class FormFragment : Fragment(R.layout.fragment_form) {
     private lateinit var navController: NavController
     private  val viewModel: FormViewModel by viewModels()
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFormBinding.bind(view)
@@ -45,6 +44,9 @@ class FormFragment : Fragment(R.layout.fragment_form) {
                 binding.txtPhone.text.toString())
         }
     }
+
+
+
 
     private fun changeView() {
         viewModel.validateForm.observe(viewLifecycleOwner, Observer { stateForm ->

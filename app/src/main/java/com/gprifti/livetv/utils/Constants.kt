@@ -7,3 +7,7 @@ const val KEY_EMAIL = "email"
 const val IMAGE_URL = "imgUrl"
 
 const val VIDEO_URL = "videoUrl"
+
+const val LIKE = "like"
+
+const val NO_LIKE = "noLike"

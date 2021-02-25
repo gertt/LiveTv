@@ -2,7 +2,6 @@ package com.gprifti.livetv.data.model.response
 
 import com.google.gson.annotations.SerializedName
 
-
  class StreamsModel {
 
     @field:SerializedName("id")
@@ -17,4 +16,6 @@ import com.google.gson.annotations.SerializedName
     @field:SerializedName("url_stream")
     var urlStream: String? = null
 
+    @field:SerializedName("heart_status")
+    var heartStatus: Boolean? = false
 }

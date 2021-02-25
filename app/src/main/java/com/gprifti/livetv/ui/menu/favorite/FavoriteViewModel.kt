@@ -14,17 +14,18 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 
 @RequiresApi(Build.VERSION_CODES.M)
-class FavoriteViewModel @ViewModelInject constructor(@ApplicationContext private val ctx: Context, private val repository: Repository) : ViewModel() {
+class FavoriteViewModel @ViewModelInject constructor(@ApplicationContext private val ctx: Context, private val repository: Repository): ViewModel() {
 
     var favoriteResult = MutableLiveData<List<FavoriteEntity>>()
     var stateView = MutableLiveData<Int>()
+
 
     init {
         if (InternetConnection.isOnline(ctx)) {
             viewModelScope.launch {
                 stateView.value = 1
                 try {
-                 //   favoriteResult.value = repository.readFavorite()
+                   favoriteResult.value = repository.readFavorite()
                     stateView.value = 4
                 } catch (e: Exception) {
                     stateView.value = 3

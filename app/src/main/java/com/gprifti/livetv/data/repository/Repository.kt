@@ -8,7 +8,7 @@ import org.json.JSONObject
 import javax.inject.Inject
 
 class Repository @Inject
-constructor (private val pref: PrefStorage,private val retrofit: APISearch,private val db: LiveTvDatabase) {
+constructor (private val pref: PrefStorage, private val retrofit: APISearch, private val db: LiveTvDatabase) {
 
     /** get data from sharepreference */
     fun savEmail(email: String) = pref.saveEmail(email)
@@ -24,10 +24,10 @@ constructor (private val pref: PrefStorage,private val retrofit: APISearch,priva
 
     suspend fun getStreamsByTittleCategory(tittle: String, category: String) = retrofit.getStreamsByTittleCategory(tittle, category)
 
-    /** get and insert datas with local db */
-  //  suspend fun readFavorite() = db.getTaskDao().readFavorite()
+    /** get and insert data in local db */
+    suspend fun readFavorite() = db.getTaskDao().readFavorite()
 
     suspend fun insertFavorite(favorite: FavoriteEntity) = db.getTaskDao().insert(favorite)
 
-   // suspend fun deleteById(id: Long) = db.getTaskDao().deleteById(id)
+    suspend fun deleteById(id: Long) = db.getTaskDao().deleteById(id)
 }

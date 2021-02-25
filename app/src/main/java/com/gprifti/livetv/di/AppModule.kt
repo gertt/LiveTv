@@ -26,9 +26,8 @@ object AppModule {
     @Provides
     fun provideContext(@ApplicationContext appContext: Context) = appContext
 
-    @Singleton
     @Provides
-    fun provideDB(@ApplicationContext app: Context) = Room.databaseBuilder(app, LiveTvDatabase::class.java, "liveTv.db").build()
+    fun provideGson(): Gson = GsonBuilder().create()
 
     @Singleton
     @Provides
@@ -39,10 +38,11 @@ object AppModule {
     fun provideRetrofit(gson: Gson): Retrofit = Retrofit.Builder().baseUrl(BuildConfig.BASE_URL).addConverterFactory(GsonConverterFactory.create(gson)).build()
 
     @Provides
-    fun provideGson(): Gson = GsonBuilder().create()
-
-    @Provides
     fun provideCharacterService(retrofit: Retrofit): APISearch = retrofit.create(APISearch::class.java)
+
+    @Singleton
+    @Provides
+    fun provideDB(@ApplicationContext app: Context) = Room.databaseBuilder(app, LiveTvDatabase::class.java, "liveTv.db").fallbackToDestructiveMigration().build()
 
     @Singleton
     @Provides
