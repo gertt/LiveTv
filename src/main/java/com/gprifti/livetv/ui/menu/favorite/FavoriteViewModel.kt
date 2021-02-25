@@ -19,6 +19,7 @@ class FavoriteViewModel @ViewModelInject constructor(@ApplicationContext private
     var favoriteResult = MutableLiveData<List<FavoriteEntity>>()
     var stateView = MutableLiveData<Int>()
 
+
     init {
         if (InternetConnection.isOnline(ctx)) {
             viewModelScope.launch {
