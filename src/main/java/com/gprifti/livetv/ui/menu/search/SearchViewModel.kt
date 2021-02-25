@@ -23,6 +23,7 @@ class SearchViewModel @ViewModelInject constructor (@ApplicationContext private 
     private var searchJob: Job? = null
     private var keyword: String = ""
 
+
     var searchResult = MutableLiveData<ArrayList<StreamsModel>>()
     var filterCategory = MutableLiveData<Int>()
 
