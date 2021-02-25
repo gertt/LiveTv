@@ -22,6 +22,7 @@ class FormFragment : Fragment(R.layout.fragment_form) {
     private lateinit var navController: NavController
     private  val viewModel: FormViewModel by viewModels()
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFormBinding.bind(view)
