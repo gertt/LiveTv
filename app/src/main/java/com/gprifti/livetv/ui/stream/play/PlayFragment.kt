@@ -44,13 +44,9 @@ class PlayFragment : Fragment(), Player.EventListener {
 
     private lateinit var binding: FragmentPlayBinding
     private lateinit var viewModel: PlayViewModel
-
     private var scope = MainScope()
-
     private var firstTimeBackPress: Long = 0
-
     private lateinit var navController: NavController
-
     private lateinit var exoPlayer: SimpleExoPlayer
     private lateinit var dataSourceFactory: DataSource.Factory
     private lateinit var ctx: Context
@@ -58,18 +54,10 @@ class PlayFragment : Fragment(), Player.EventListener {
     private var playbackPosition: Long = 0
     private var isFullscreen = false
     private var isPlayerPlaying = true
+    private val mediaItem = MediaItem.Builder().setUri(HLS_STATIC_URL).setMimeType(MimeTypes.APPLICATION_M3U8).build()
 
-    private val mediaItem = MediaItem.Builder()
-            .setUri(HLS_STATIC_URL)
-            .setMimeType(MimeTypes.APPLICATION_M3U8)
-            .build()
-
-    override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         ctx = container!!.context
-
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_play, container, false)
         viewModel = ViewModelProvider(this).get(PlayViewModel::class.java)
         binding.playViewModel = viewModel
@@ -87,10 +75,7 @@ class PlayFragment : Fragment(), Player.EventListener {
         navController = Navigation.findNavController(view)
 
         val recipient = requireArguments().getString("videoUrl")
-
-        if (recipient != null) {
-            HLS_STATIC_URL = recipient
-        }
+        if (recipient != null) HLS_STATIC_URL = recipient
 
         dataSourceFactory = DefaultDataSourceFactory(ctx, Util.getUserAgent(ctx, "testapp"))
         if (savedInstanceState != null) {
@@ -151,8 +136,10 @@ class PlayFragment : Fragment(), Player.EventListener {
 
     override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
         when (playbackState) {
-            Player.STATE_BUFFERING -> binding.includedLayoutLoader.progressBar.visibility = View.VISIBLE
-            Player.STATE_READY -> binding.includedLayoutLoader.progressBar.visibility = View.INVISIBLE
+            Player.STATE_BUFFERING -> binding.includedLayoutLoader.progressBar.visibility =
+                View.VISIBLE
+            Player.STATE_READY -> binding.includedLayoutLoader.progressBar.visibility =
+                View.INVISIBLE
             Player.STATE_IDLE -> {
                 binding.includedLayoutLoader.progressBar.visibility = View.VISIBLE
                 startCheck()
@@ -180,16 +167,15 @@ class PlayFragment : Fragment(), Player.EventListener {
 
     private fun backPress() {
         val callback: OnBackPressedCallback =
-                object : OnBackPressedCallback(true) {
-                    override fun handleOnBackPressed() {
-                        if ((firstTimeBackPress - System.currentTimeMillis()) > 1200)
-                            view?.snack("Press again")
-                        else view?.snack("ok again")
-                        navController.navigate(R.id.action_searchFragment_to_popularListFragment)
-
-                        firstTimeBackPress = System.currentTimeMillis()
-                    }
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if ((firstTimeBackPress - System.currentTimeMillis()) > 1200)
+                        view?.snack("Press again")
+                    else view?.snack("ok again")
+                    navController.navigate(R.id.action_searchFragment_to_popularListFragment)
+                    firstTimeBackPress = System.currentTimeMillis()
                 }
+            }
         requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 }
