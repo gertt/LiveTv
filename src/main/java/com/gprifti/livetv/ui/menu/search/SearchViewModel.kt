@@ -7,12 +7,14 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gprifti.livetv.data.db.FavoriteEntity
 import com.gprifti.livetv.data.model.response.StreamsModel
 import com.gprifti.livetv.data.repository.Repository
 import com.gprifti.livetv.utils.FilterType
 import com.gprifti.livetv.utils.InternetConnection
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.*
+
 
 @RequiresApi(Build.VERSION_CODES.M)
 class SearchViewModel @ViewModelInject constructor (@ApplicationContext private val ctx: Context, private val repository: Repository) : ViewModel() {
@@ -24,6 +26,9 @@ class SearchViewModel @ViewModelInject constructor (@ApplicationContext private 
     var searchResult = MutableLiveData<ArrayList<StreamsModel>>()
     var filterCategory = MutableLiveData<Int>()
 
+    var arrayList = ArrayList<StreamsModel>()
+    var arrayList2 = ArrayList<FavoriteEntity>()
+
     var stateView = MutableLiveData<Int>()
 
     init {
@@ -31,7 +36,18 @@ class SearchViewModel @ViewModelInject constructor (@ApplicationContext private 
             stateView.value = 1
             coroutineScope.launch {
                 try {
-                    searchResult.value = repository.getStreamsByTittle("")
+                    arrayList = repository.getStreamsByTittle("")
+                    arrayList2 = repository.readFavorite() as ArrayList<FavoriteEntity>
+                    arrayList.forEachIndexed { i, el1 ->
+                        arrayList2.forEachIndexed { _, el2 ->
+
+                            System.out.println("Elsrsr: ${el1.id}  and el2: ${el2.id}")
+                            if (el1.id == el2.id){
+                                arrayList[i].heartStatus = true
+                            }
+                        }
+                    }
+                    searchResult.postValue(arrayList)
                     stateView.value = 4
                 } catch (e: Exception) {
                     stateView.value = 3
@@ -72,6 +88,29 @@ class SearchViewModel @ViewModelInject constructor (@ApplicationContext private 
         }
     }
 
+    fun insertFavorite(streamsModel: StreamsModel) {
+        coroutineScope.launch {
+            try {
+                with(streamsModel) {
+                    var favorite = FavoriteEntity(img, urlStream, tittle)
+                    repository.insertFavorite(favorite)
+                }
+            } catch (e: Exception) {}
+        }
+    }
+
+    fun deleteFavorite(streamsModel: StreamsModel) {
+        coroutineScope.launch {
+            try {
+                with(streamsModel) {
+                    streamsModel.id?.let { repository.deleteById(it.toLong()) }
+                }
+            } catch (e: Exception) {}
+        }
+    }
+
+
+
     private fun callService(keyword: String, category: String) {
         if (InternetConnection.isOnline(ctx)) {
             viewModelScope.launch {
@@ -85,4 +124,7 @@ class SearchViewModel @ViewModelInject constructor (@ApplicationContext private 
             }
         } else stateView.value = 2
     }
+
+
+
 }

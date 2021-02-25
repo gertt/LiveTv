@@ -25,9 +25,9 @@ constructor (private val pref: PrefStorage, private val retrofit: APISearch, pri
     suspend fun getStreamsByTittleCategory(tittle: String, category: String) = retrofit.getStreamsByTittleCategory(tittle, category)
 
     /** get and insert data in local db */
-  //  suspend fun readFavorite() = db.getTaskDao().readFavorite()
+    suspend fun readFavorite() = db.getTaskDao().readFavorite()
 
     suspend fun insertFavorite(favorite: FavoriteEntity) = db.getTaskDao().insert(favorite)
 
-   // suspend fun deleteById(id: Long) = db.getTaskDao().deleteById(id)
+    suspend fun deleteById(id: Long) = db.getTaskDao().deleteById(id)
 }

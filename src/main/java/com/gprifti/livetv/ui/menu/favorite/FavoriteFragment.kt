@@ -13,6 +13,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gprifti.livetv.R
+import com.gprifti.livetv.data.db.FavoriteEntity
 import com.gprifti.livetv.databinding.FragmentFavoriteBinding
 import com.gprifti.livetv.utils.SnackBar.Companion.snack
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,7 +42,7 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite) {
     private fun initRecyclerView() {
         binding.recyclerViewFavorite.layoutManager = LinearLayoutManager(ctx, LinearLayout.VERTICAL, false)
         viewModel.favoriteResult.observe(viewLifecycleOwner, Observer {
-            favoriteAdapter = FavoriteAdapter(it)
+            favoriteAdapter = FavoriteAdapter(ctx,navController,it as ArrayList<FavoriteEntity>)
             binding.recyclerViewFavorite.adapter = favoriteAdapter
         })
     }

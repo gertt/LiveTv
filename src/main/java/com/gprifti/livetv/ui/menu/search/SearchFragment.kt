@@ -70,7 +70,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     private fun initRecyclerView() {
         binding.recyclerViewSearch.layoutManager = LinearLayoutManager(ctx, LinearLayout.VERTICAL, false)
         viewModel.searchResult.observe(viewLifecycleOwner, Observer {
-            searchAdapter = SearchAdapter(ctx,navController,it as ArrayList<StreamsModel>)
+            searchAdapter = SearchAdapter(ctx,navController,it as ArrayList<StreamsModel>,viewModel)
             binding.recyclerViewSearch.adapter = searchAdapter
         })
     }
