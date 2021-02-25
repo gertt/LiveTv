@@ -45,6 +45,7 @@ class FormFragment : Fragment(R.layout.fragment_form) {
         }
     }
 
+
     private fun changeView() {
         viewModel.validateForm.observe(viewLifecycleOwner, Observer { stateForm ->
             when (stateForm.id) {
